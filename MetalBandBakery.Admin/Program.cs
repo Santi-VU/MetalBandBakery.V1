@@ -1,4 +1,5 @@
 ﻿using MetalBandBakery.Core.Services;
+using MetalBandBakery.Infra.Repository.HTTP;
 using MetalBandBakey.Infra.Repository;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,8 @@ namespace MetalBandBakery.Admin
                 if (!_RESTchangerService.ModifyPrice(productToChange[0], newPrice))
                 {
                     Console.WriteLine($"No pudo modificarse el precio del producto {productToChange}");
-                } else
+                }
+                else
                 {
                     Console.WriteLine($"Precio del producto {productToChange} modificado: {lastPrice} -> {newPrice}");
                 }
