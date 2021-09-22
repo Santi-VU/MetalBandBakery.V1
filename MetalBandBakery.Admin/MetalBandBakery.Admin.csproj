@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F84B830C-AC70-4C29-A776-BE665593530B}</ProjectGuid>
+    <ProjectGuid>{DF737945-36AE-4DA3-A486-C4F90AB4A447}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>MetalBandBakery.Admin</RootNamespace>
     <AssemblyName>MetalBandBakery.Admin</AssemblyName>
@@ -50,12 +50,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MetalBandBakery.console\MetalBandBakery.Console.csproj">
-      <Project>{4f02595e-7653-4de1-89c2-6c156aa1df1f}</Project>
-      <Name>MetalBandBakery.Console</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MetalBandBakery.Core\MetalBandBakery.Core.csproj">
-      <Project>{4f279183-fb25-4d23-95c4-a27d068b3b14}</Project>
+      <Project>{4F279183-FB25-4D23-95C4-A27D068B3B14}</Project>
       <Name>MetalBandBakery.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\MetalBandBakery.Infra\MetalBandBakery.Infra.csproj">
