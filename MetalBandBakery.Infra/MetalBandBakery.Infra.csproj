@@ -62,9 +62,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\HTTP\RestFullChangerService.cs" />
     <Compile Include="Repository\HTTP\RestFullPriceService.cs" />
     <Compile Include="Repository\HTTP\SoapReplaceStockService.cs" />
     <Compile Include="Repository\HTTP\SoapStockService.cs" />
+    <Compile Include="Repository\InMemory\InMemoryChangerService.cs" />
     <Compile Include="Repository\InMemory\InMemoryStockService.cs" />
     <Compile Include="Repository\InMemory\InMemoryReplaceService.cs" />
     <Compile Include="Repository\InMemory\InMemoryPriceService.cs" />

@@ -29,16 +29,30 @@ namespace MetalBandBakery.PriceService.Api.Controllers
             return list;
         }
 
-        [HttpGet("{product}")]
+        [HttpGet("getPrice/{product}")]
         public decimal GetPrice(char product)
         {
             return Repositories.PriceProduct._prices[product];
         }
 
-        [HttpGet("{moneyForPay}/{totalBuy}")]
+        [HttpGet("isEnough/{moneyForPay}/{totalBuy}")]
         public bool GetEnough(decimal moneyForPay, decimal totalBuy)
         {
             return moneyForPay >= totalBuy;
         }
+
+        [HttpGet("setPrice/{product}/{newPrice}")]
+        public bool GetNewPrice(char product, decimal newPrice)
+        {
+            if (!Repositories.PriceProduct._prices.ContainsKey(product))
+                return false;
+
+            if (newPrice <= 0)
+                return false;
+
+            Repositories.PriceProduct._prices[product] = newPrice;
+            return true;
+        }
+        
     }
 }

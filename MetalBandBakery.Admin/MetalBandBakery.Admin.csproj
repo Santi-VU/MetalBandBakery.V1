@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F279183-FB25-4D23-95C4-A27D068B3B14}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>MetalBandBakery.Core</RootNamespace>
-    <AssemblyName>MetalBandBakery.Core</AssemblyName>
+    <ProjectGuid>{F84B830C-AC70-4C29-A776-BE665593530B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MetalBandBakery.Admin</RootNamespace>
+    <AssemblyName>MetalBandBakery.Admin</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,16 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderLine.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IChangerService.cs" />
-    <Compile Include="Services\IPriceService.cs" />
-    <Compile Include="Services\IReplaceStockService.cs" />
-    <Compile Include="Services\IStockService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MetalBandBakery.console\MetalBandBakery.Console.csproj">
+      <Project>{4f02595e-7653-4de1-89c2-6c156aa1df1f}</Project>
+      <Name>MetalBandBakery.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetalBandBakery.Core\MetalBandBakery.Core.csproj">
+      <Project>{4f279183-fb25-4d23-95c4-a27d068b3b14}</Project>
+      <Name>MetalBandBakery.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetalBandBakery.Infra\MetalBandBakery.Infra.csproj">
+      <Project>{634f2ea5-1c23-4766-821e-e7517c4ebdeb}</Project>
+      <Name>MetalBandBakery.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

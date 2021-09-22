@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MetalBandBakery.Core.Services
+namespace MetalBandBakery.ChangerService.Api.Repositories
 {
-    public class PriceService : IPriceService
+    public class ChangerPrice : IChangerPrice
     {
         public static Dictionary<char, decimal> _prices = new Dictionary<char, decimal>()
         {
@@ -15,16 +15,6 @@ namespace MetalBandBakery.Core.Services
             {'C', 1.35m },
             {'W', 1.50m },
         };
-
-        public decimal GetProductPrice(char product)
-        {
-            return _prices[product];
-        }
-
-        public bool ItIsEnoughtMoney(decimal moneyForPay, decimal totalBuy)
-        {
-            return moneyForPay >= totalBuy;
-        }
 
         public bool ModifyPrice(char product, decimal newPrice)
         {

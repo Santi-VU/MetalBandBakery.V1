@@ -24,5 +24,17 @@ namespace MetalBandBakery.PriceService.Api.Repositories
         {
             return moneyForPay >= totalBuy;
         }
+
+        public bool ModifyPrice(char product, decimal newPrice)
+        {
+            if (!_prices.ContainsKey(product))
+                return false;
+
+            if (newPrice <= 0)
+                return false;
+
+            _prices[product] = newPrice;
+            return true;
+        }
     }
 }

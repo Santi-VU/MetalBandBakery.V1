@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MetalBandBakery.Core.Services
 {
-    public class PriceService : IPriceService
+    public class InMemoryChangerService : IChangerService
     {
+        private IPriceService _RESTpriceService;
         public static Dictionary<char, decimal> _prices = new Dictionary<char, decimal>()
         {
             {'B', 0.65m },
@@ -16,14 +17,9 @@ namespace MetalBandBakery.Core.Services
             {'W', 1.50m },
         };
 
-        public decimal GetProductPrice(char product)
+        public InMemoryChangerService (IPriceService RESTpriceService)
         {
-            return _prices[product];
-        }
-
-        public bool ItIsEnoughtMoney(decimal moneyForPay, decimal totalBuy)
-        {
-            return moneyForPay >= totalBuy;
+            _RESTpriceService = RESTpriceService;
         }
 
         public bool ModifyPrice(char product, decimal newPrice)
@@ -34,7 +30,7 @@ namespace MetalBandBakery.Core.Services
             if (newPrice <= 0)
                 return false;
 
-            _prices[product] = newPrice;
+            _RESTpriceService.ModifyPrice(product, newPrice);
             return true;
         }
     }
