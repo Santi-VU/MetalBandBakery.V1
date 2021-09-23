@@ -53,6 +53,17 @@ namespace MetalBandBakery.PriceService.Api.Controllers
             Repositories.PriceProduct._prices[product] = newPrice;
             return true;
         }
-        
+
+        [HttpGet("getAllPrices")]
+        public decimal[] GetAllPriceS()
+        {
+            decimal[] prices = new decimal[Repositories.PriceProduct._prices.Count];
+            int cont = 0;
+            foreach (var i in Repositories.PriceProduct._prices) {
+                prices[cont] = i.Value;
+                cont++;
+            }
+            return prices;
+        }
     }
 }

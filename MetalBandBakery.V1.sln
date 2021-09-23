@@ -71,6 +71,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetalBandBakery.ChangerServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.Admin", "MetalBandBakery.Admin\MetalBandBakery.Admin.csproj", "{DF737945-36AE-4DA3-A486-C4F90AB4A447}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.MVC", "MetalBandBakery.MVC\MetalBandBakery.MVC.csproj", "{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F1A3A2A8-03D9-46E3-BDE7-F578D721E285} = {F1A3A2A8-03D9-46E3-BDE7-F578D721E285}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +114,10 @@ Global
 		{DF737945-36AE-4DA3-A486-C4F90AB4A447}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF737945-36AE-4DA3-A486-C4F90AB4A447}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF737945-36AE-4DA3-A486-C4F90AB4A447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

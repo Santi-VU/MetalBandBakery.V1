@@ -80,6 +80,9 @@
     <None Include="Connected Services\Inventory.WCF\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\Inventory.WCF\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\Replace.WCF\Service.wsdl" />
     <None Include="Connected Services\Replace.WCF\Service.xsd">
       <SubType>Designer</SubType>

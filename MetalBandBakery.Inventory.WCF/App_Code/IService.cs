@@ -25,4 +25,13 @@ public interface IService
 
 	[OperationContract]
 	bool AddStock(char product);
+
+	[OperationContract]
+	int [] GetStocks();
+
+	[OperationContract]
+	string[] GetShorts();
+
+	[OperationContract]
+	bool AddStockWithQuantity(char product, int quantity);
 }

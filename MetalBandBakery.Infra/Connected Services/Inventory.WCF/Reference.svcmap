@@ -23,6 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="Service.xsd" MetadataType="Schema" ID="d212909e-be44-4170-a304-b451cefc5a0c" SourceId="1" SourceUrl="http://localhost:55243/Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="d71fa8f8-69e3-4f52-a7c6-bf74959218d0" SourceId="1" SourceUrl="http://localhost:55243/Service.svc?xsd=xsd2" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="2d1bdbfa-42cf-4ebb-a1a5-2a1e50c2f6eb" SourceId="1" SourceUrl="http://localhost:55243/Service.svc?xsd=xsd1" />
     <MetadataFile FileName="Service.wsdl" MetadataType="Wsdl" ID="5b9d0a13-b6b1-4e1f-b675-ae8ad90feaea" SourceId="1" SourceUrl="http://localhost:55243/Service.svc?wsdl" />
   </Metadata>

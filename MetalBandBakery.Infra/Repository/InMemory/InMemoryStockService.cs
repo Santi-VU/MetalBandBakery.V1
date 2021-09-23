@@ -22,6 +22,11 @@ namespace MetalBandBakery.Infra.Repository.InMemory
             throw new NotImplementedException();
         }
 
+        public bool AddStockWithQuantity(char product, int quantity)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CanBeRemoved(char product, int amount)
         {
             throw new NotImplementedException();

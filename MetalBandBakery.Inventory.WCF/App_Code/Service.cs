@@ -54,4 +54,40 @@ public class Service : IService
             InventoryProduct._stock[product] = ((5 - InventoryProduct._stock[product]) + InventoryProduct._stock[product]);
         return true;
     }
+
+    public int[] GetStocks()
+    {
+        int[] stocks = new int[InventoryProduct._stock.Count];
+        int cont = 0;
+        foreach (var i in InventoryProduct._stock)
+        {
+            stocks[cont] = i.Value;
+            cont++;
+        }
+        return stocks;
+    }
+
+    public string[] GetShorts()
+    {
+        string[] shorts = new string[InventoryProduct._stock.Count];
+        int cont = 0;
+        foreach (var i in InventoryProduct._stock)
+        {
+            shorts[cont] = i.Key.ToString();
+            cont++;
+        }
+        return shorts;
+    }
+
+    public bool AddStockWithQuantity(char product, int quantity)
+    {
+        if (!InventoryProduct._stock.ContainsKey(product))
+            return false;
+
+        if (quantity <= 0)
+            return false;
+
+        InventoryProduct._stock[product] = quantity;
+        return true;
+    }
 }
