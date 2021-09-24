@@ -42,7 +42,6 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
                 return false;
 
             IPriceService _RESTpriceService = new RestfullPriceService();
-            decimal lastPrice = _RESTpriceService.GetProductPrice(product);
             _RESTpriceService.ModifyPrice(product, newPrice);
             return true;
         }

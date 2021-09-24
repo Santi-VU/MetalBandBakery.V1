@@ -30,8 +30,5 @@ public interface IService
 	int [] GetStocks();
 
 	[OperationContract]
-	string[] GetShorts();
-
-	[OperationContract]
 	bool AddStockWithQuantity(char product, int quantity);
 }

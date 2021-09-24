@@ -44,5 +44,11 @@ namespace MetalBandBakery.Infra.Repository.HTTP
             Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
             return wcfService.AddStockWithQuantity(product, quantity);
         }
+
+        public int[] GetStocks()
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            return wcfService.GetStocks();
+        }
     }
 }

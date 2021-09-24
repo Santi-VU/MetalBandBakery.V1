@@ -128,9 +128,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\NameService.WCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\BakeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IChangerService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,6 +148,13 @@
     <None Include="Connected Services\Inventory.WCF\configuration91.svcinfo" />
     <None Include="Connected Services\Inventory.WCF\configuration.svcinfo" />
     <None Include="Connected Services\Inventory.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\NameService.WCF\Service.disco" />
+    <None Include="Connected Services\NameService.WCF\configuration91.svcinfo" />
+    <None Include="Connected Services\NameService.WCF\configuration.svcinfo" />
+    <None Include="Connected Services\NameService.WCF\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -165,6 +176,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\Inventory.WCF\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NameService.WCF\Service.wsdl" />
+    <None Include="Connected Services\NameService.WCF\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NameService.WCF\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NameService.WCF\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -226,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\Inventory.WCF\" />
+    <WCFMetadataStorage Include="Connected Services\NameService.WCF\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

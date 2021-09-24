@@ -36,6 +36,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.Inventory.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.Infra", "MetalBandBakery.Infra\MetalBandBakery.Infra.csproj", "{634F2EA5-1C23-4766-821E-E7517C4EBDEB}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD} = {CBDA0555-1016-4771-8AA6-EDD6917813FD}
 		{F1A3A2A8-03D9-46E3-BDE7-F578D721E285} = {F1A3A2A8-03D9-46E3-BDE7-F578D721E285}
 	EndProjectSection
 EndProject
@@ -73,7 +74,30 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.Admin", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.MVC", "MetalBandBakery.MVC\MetalBandBakery.MVC.csproj", "{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD} = {CBDA0555-1016-4771-8AA6-EDD6917813FD}
 		{F1A3A2A8-03D9-46E3-BDE7-F578D721E285} = {F1A3A2A8-03D9-46E3-BDE7-F578D721E285}
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.NamesService.WCF", "MetalBandBakery.NamesService.WCF\", "{CBDA0555-1016-4771-8AA6-EDD6917813FD}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49313"
+		Debug.AspNetCompiler.PhysicalPath = "MetalBandBakery.NamesService.WCF\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49313\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49313"
+		Release.AspNetCompiler.PhysicalPath = "MetalBandBakery.NamesService.WCF\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49313\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49313"
+		SlnRelativePath = "MetalBandBakery.NamesService.WCF\"
+		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
 Global
@@ -118,6 +142,10 @@ Global
 		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

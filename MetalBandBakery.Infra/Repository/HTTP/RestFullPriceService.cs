@@ -28,12 +28,16 @@ namespace MetalBandBakey.Infra.Repository
         {
 			string apiUrl = "https://localhost:44383/prices/isEnough";
 
+			string aux = totalBuy.ToString();
+			if (aux.Contains(","))
+				aux = aux.Replace(',', '.');
+
 			using (WebClient client = new WebClient())
 			{
 				client.Headers["Content-type"] = "application/json";
 				client.Encoding = Encoding.UTF8;
 
-				string json = client.DownloadString($"{apiUrl}/{moneyForPay}/{totalBuy}");
+				string json = client.DownloadString($"{apiUrl}/{moneyForPay}/{aux}");
 
 				var itsEnough = JsonConvert.DeserializeObject<bool>(json);
 
@@ -45,12 +49,16 @@ namespace MetalBandBakey.Infra.Repository
         {
 			string apiUrl = "https://localhost:44383/prices/setPrice";
 
+			string aux = newPrice.ToString();
+			if (aux.Contains(","))
+				aux = aux.Replace(',', '.');
+
 			using (WebClient client = new WebClient())
 			{
 				client.Headers["Content-type"] = "application/json";
 				client.Encoding = Encoding.UTF8;
 
-				string json = client.DownloadString($"{apiUrl}/{product}/{newPrice}");
+				string json = client.DownloadString($"{apiUrl}/{product}/{aux}");
 
 				var priceChanged = JsonConvert.DeserializeObject<bool>(json);
 

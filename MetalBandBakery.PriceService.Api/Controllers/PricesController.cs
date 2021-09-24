@@ -44,7 +44,7 @@ namespace MetalBandBakery.PriceService.Api.Controllers
         [HttpGet("setPrice/{product}/{newPrice}")]
         public bool GetNewPrice(char product, decimal newPrice)
         {
-            if (!Repositories.PriceProduct._prices.ContainsKey(product))
+                if (!Repositories.PriceProduct._prices.ContainsKey(product))
                 return false;
 
             if (newPrice <= 0)

@@ -67,18 +67,6 @@ public class Service : IService
         return stocks;
     }
 
-    public string[] GetShorts()
-    {
-        string[] shorts = new string[InventoryProduct._stock.Count];
-        int cont = 0;
-        foreach (var i in InventoryProduct._stock)
-        {
-            shorts[cont] = i.Key.ToString();
-            cont++;
-        }
-        return shorts;
-    }
-
     public bool AddStockWithQuantity(char product, int quantity)
     {
         if (!InventoryProduct._stock.ContainsKey(product))
@@ -87,7 +75,7 @@ public class Service : IService
         if (quantity <= 0)
             return false;
 
-        InventoryProduct._stock[product] = quantity;
+        InventoryProduct._stock[product] += quantity;
         return true;
     }
 }
