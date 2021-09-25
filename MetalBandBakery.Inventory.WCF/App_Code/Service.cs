@@ -41,6 +41,24 @@ public class Service : IService
         return true;
     }
 
+    public bool RemoveStockUnit(char product)
+    {
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
+            return false;
+
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
+        int index = DBService.GetIndexOfText(product, lines);
+
+        int currentStock = Int32.Parse(lines[index].Split('=')[1]);
+
+        if (currentStock <= 0)
+            return false;
+
+        lines[index] = product.ToString() + "=" + Int32.Parse((currentStock - 1).ToString());
+        DBService.ReWriteFile(DBService.stocksFile, lines);
+        return true;
+    }
+
     public int ManyStock(char product)
     {
         if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
@@ -111,5 +129,25 @@ public class Service : IService
 
         DBService.ReWriteFile(DBService.stocksFile, lines);
         return true;
+    }
+
+    public void AddStockUnit(char product)
+    {
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
+        int index = -1;
+        int currentStock = 0;
+
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
+        {
+            lines.Add(product.ToString() + "=1");
+        } else {
+            index = DBService.GetIndexOfText(product, lines);
+            if (index == -1)
+                return;
+            currentStock = Int32.Parse(lines[index].Split('=')[1]);
+            currentStock += 1;
+            lines[index] = product.ToString() + "=" + currentStock;
+        }
+        DBService.ReWriteFile(DBService.stocksFile, lines);
     }
 }

@@ -55,5 +55,17 @@ namespace MetalBandBakery.Infra.Repository.HTTP
             }
             return list;
         }
+
+        public bool RemoveStockUnit(char product)
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            return wcfService.RemoveStockUnit(product);
+        }
+
+        public void AddStockUnit(char product)
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            wcfService.AddStockUnit(product);
+        }
     }
 }

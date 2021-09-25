@@ -9,6 +9,7 @@
 @using (Html.BeginForm("BakeEdited", "Bake", FormMethod.Post))
 {
     {
+        @Model.Stock = 0;
         <input type="hidden" name="OldStock" .Index" value="@Model.Stock">
 
         @Html.TextBoxFor(model => model.Sort, new { @readonly = "readonly" })

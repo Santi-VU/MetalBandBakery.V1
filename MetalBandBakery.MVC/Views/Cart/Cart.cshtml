@@ -1,0 +1,80 @@
+﻿@model MetalBandBakery.MVC.ViewsModels.ListCartViewModel
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Products list to buy</h2>
+<table class="table">
+    <tr>
+        <th>Sort</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var i in Model.products)
+    {
+        <tr>
+            <td>@i.Sort</td>
+            <td>@i.Name</td>
+            <td>@Convert.ToDecimal(i.Price).ToString()</td>
+            <td>@i.Stock</td>
+            <td>
+                <input type="button" value="Add" onclick="location.href =
+                '@Url.Action("Add", "Cart", new MetalBandBakery.MVC.Models.Bake
+                            { Sort = i.Sort, Name = i.Name, Price = i.Price, Stock = i.Stock })'" />
+            </td>
+            <td>
+                <input type="button" value="Del" onclick="location.href =
+                '@Url.Action("Del", "Cart", new MetalBandBakery.MVC.Models.Bake
+                            { Sort = i.Sort, Name = i.Name, Price = i.Price, Stock = i.Stock })'" />
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Your cart</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+    </tr>
+
+    @if (Model.cart.productList != null && Model.cart.productList.Count > 0)
+    {
+        foreach (var i in Model.cart.productList)
+        {
+            <tr>
+                <td>@i.Item1</td>
+                <td>@i.Item2</td>
+            </tr>
+        }
+
+    }
+</table>
+
+@if (Model.cart.productList != null && Model.cart.productList.Count > 0)
+{
+    <h3>Total of cart is: @Model.cart.totalValue $</h3>
+    <h3>Total payed @Model.cart.totalPayed$ of @Model.cart.totalValue$</h3>
+
+    using (Html.BeginForm("Pay", "Cart", FormMethod.Post))
+    {
+        {
+            @Html.TextBoxFor(model => model.cart.totalPayed);
+            <br />
+            <input type="submit" value="Pay" />
+        }
+    }
+
+    if (Model.cart.totalPayed >= Model.cart.totalValue)
+    {
+        <input type="button" value="Buy" id="btnBuy" name="btnBuy" onclick="location.href =
+        '@Url.Action("Resume", "Cart", Model.cart)'" enabled />
+    }
+}
+

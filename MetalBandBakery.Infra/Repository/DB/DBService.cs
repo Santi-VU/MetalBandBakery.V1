@@ -12,6 +12,8 @@ namespace MetalBandBakery.Infra.Repository.DB
         public readonly static string stocksFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Stocks.txt";
         public readonly static string pricesFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Prices.txt";
         public readonly static string namesFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Names.txt";
+        public readonly static string cartFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Cart.txt";
+        public readonly static string cartValueFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\CartValue.txt";
 
         public static List<string> ReadTextFromFile(string filePath)
         {
@@ -37,12 +39,21 @@ namespace MetalBandBakery.Infra.Repository.DB
         public static int GetIndexOfText(char product, List<string> lines)
         {
             int cont = 0;
+            bool find = false;
             foreach (var i in lines)
             {
-                if (i.Split('=')[0] == product.ToString()) 
+                if (i.Split('=')[0] == product.ToString())
+                {
+                    find = true;
                     break;
+                }
+                    
                 cont++;
             }
+
+            if (!find)
+                return -1;
+
             return cont;
         }
         

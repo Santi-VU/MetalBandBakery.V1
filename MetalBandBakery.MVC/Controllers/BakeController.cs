@@ -35,7 +35,7 @@ namespace MetalBandBakery.MVC.Controllers
             List<decimal> prices = restPriceService.GetAllPriceS();           
 
             var viewModel = new ListBakeViewModel();
-            viewModel.bakes = new List<Models.Bake>();
+            viewModel.bakes = new List<Bake>();
             for (int i = 0; i < names.Count; i++)
             {
                 viewModel.bakes.Add(new Models.Bake { Sort = sorts[i].ToString(), Name = names[i], Price = prices[i], Stock = stocks[i]});
@@ -47,6 +47,8 @@ namespace MetalBandBakery.MVC.Controllers
         public ActionResult Edit(Bake bake)
         {
             var viewModel = new EditBakeViewModel();
+            //Starts with value 0 in Stock for edit
+            bake.Stock = 0;
             viewModel.Product = bake;
 
             return View(bake);

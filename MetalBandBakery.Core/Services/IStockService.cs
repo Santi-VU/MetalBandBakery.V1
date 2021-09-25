@@ -11,5 +11,7 @@ namespace MetalBandBakery.Core.Services
         void AddStock(char product);
         bool AddStockWithQuantity(char product, int quantity);
         List<int> GetStocks();
+        bool RemoveStockUnit(char product);
+        void AddStockUnit(char product);
     }
 }
