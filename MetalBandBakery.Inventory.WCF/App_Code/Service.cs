@@ -14,10 +14,10 @@ public class Service : IService
 {
     public bool CheckStock(char product)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stockFile))
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
             return false;
 
-        List<string> lines = DBService.ReadTextFromFile(DBService.stockFile);
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
         int index = DBService.GetIndexOfText(product, lines);
 
         return Int32.Parse(lines[index].Split('=')[1]) > 0;
@@ -25,10 +25,10 @@ public class Service : IService
 
     public bool RemoveStock(char product, int amount)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stockFile))
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
             return false;
 
-        List<string> lines = DBService.ReadTextFromFile(DBService.stockFile);
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
         int index = DBService.GetIndexOfText(product, lines);
 
         int currentStock = Int32.Parse(lines[index].Split('=')[1]);
@@ -37,16 +37,16 @@ public class Service : IService
             return false;
 
         lines[index] = product.ToString() + "=" + Int32.Parse((currentStock - amount).ToString());
-        DBService.ReWriteFile(DBService.stockFile, lines);
+        DBService.ReWriteFile(DBService.stocksFile, lines);
         return true;
     }
 
     public int ManyStock(char product)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stockFile))
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
             return -1;
 
-        List<string> lines = DBService.ReadTextFromFile(DBService.stockFile);
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
         int index = DBService.GetIndexOfText(product, lines);
 
         return Int32.Parse(lines[index].Split('=')[1]);
@@ -54,10 +54,10 @@ public class Service : IService
 
     public bool CanBeRemoved(char product, int amount)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stockFile))
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
             return false;
 
-        List<string> lines = DBService.ReadTextFromFile(DBService.stockFile);
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
         int index = DBService.GetIndexOfText(product, lines);
 
         return Int32.Parse(lines[index].Split('=')[1]) >= amount;
@@ -65,10 +65,10 @@ public class Service : IService
 
     public bool AddStock(char product)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stockFile))
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
             return false;
 
-        List<string> lines = DBService.ReadTextFromFile(DBService.stockFile);
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
         int index = DBService.GetIndexOfText(product, lines);
 
         int currentStock = Int32.Parse(lines[index].Split('=')[1]);
@@ -81,14 +81,14 @@ public class Service : IService
             InventoryProduct._stock[product] = ((5 - InventoryProduct._stock[product]) + InventoryProduct._stock[product]);
         lines[index] = product.ToString() + "=" + Int32.Parse((aux + currentStock).ToString());
 
-        DBService.ReWriteFile(DBService.stockFile, lines);
+        DBService.ReWriteFile(DBService.stocksFile, lines);
         return true;
     }
 
     public List<int> GetStocks()
     {
         List<int> stocks = new List<int>();
-        foreach(var i in DBService.ReadTextFromFile(DBService.stockFile))
+        foreach(var i in DBService.ReadTextFromFile(DBService.stocksFile))
         {
             stocks.Add(Int32.Parse(i.Split('=')[1]));
         }
@@ -97,19 +97,19 @@ public class Service : IService
 
     public bool AddStockWithQuantity(char product, int quantity)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stockFile))
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
             return false;
 
         if (quantity <= 0)
             return false;
 
-        List<string> lines = DBService.ReadTextFromFile(DBService.stockFile);
+        List<string> lines = DBService.ReadTextFromFile(DBService.stocksFile);
         int index = DBService.GetIndexOfText(product, lines);
 
         int auxStock = Int32.Parse(lines[index].Split('=')[1]);
         lines[index] = product.ToString() + "=" + Int32.Parse((auxStock + quantity).ToString());
 
-        DBService.ReWriteFile(DBService.stockFile, lines);
+        DBService.ReWriteFile(DBService.stocksFile, lines);
         return true;
     }
 }

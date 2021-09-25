@@ -31,19 +31,8 @@ namespace MetalBandBakery.MVC.Controllers
             string[] names = wcfNameService.GetAllProducts();
             char[] sorts = wcfNameService.GetAllProductSorts();
 
-            decimal[] prices;
-            string apiUrl = "https://localhost:44383/prices";
-            using (WebClient client = new WebClient())
-            {
-                client.Headers["Content-type"] = "application/json";
-                client.Encoding = Encoding.UTF8;
-
-                string json = client.DownloadString($"{apiUrl}/getAllPrices");
-
-                prices = JsonConvert.DeserializeObject<decimal[]>(json);
-            }
-
-            
+            RestfullPriceService restPriceService = new RestfullPriceService();
+            List<decimal> prices = restPriceService.GetAllPriceS();           
 
             var viewModel = new ListBakeViewModel();
             viewModel.bakes = new List<Models.Bake>();

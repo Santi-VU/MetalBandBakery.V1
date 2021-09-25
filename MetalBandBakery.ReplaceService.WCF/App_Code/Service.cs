@@ -1,4 +1,6 @@
 ﻿using System;
+using MetalBandBakery.Infra.Repository.DB;
+using MetalBandBakery.Infra.Repository.HTTP;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,7 +15,10 @@ public class Service : IService
     }
     public bool NeedToBeReplace(char product)
     {
-        MetalBandBakery.Infra.Repository.HTTP.SoapStockService _wcfStock =  new MetalBandBakery.Infra.Repository.HTTP.SoapStockService();
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
+            return false;
+
+        SoapStockService _wcfStock =  new SoapStockService();
         if (_wcfStock.ManyStock(product) > 1)
             return false;
         return true;
@@ -21,7 +26,10 @@ public class Service : IService
 
     public void ReplaceProduct(char product)
     {
-        MetalBandBakery.Infra.Repository.HTTP.SoapStockService _wcfStock = new MetalBandBakery.Infra.Repository.HTTP.SoapStockService();
+        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
+            return;
+
+        SoapStockService _wcfStock = new SoapStockService();
         _wcfStock.AddStock(product);
     }
 }

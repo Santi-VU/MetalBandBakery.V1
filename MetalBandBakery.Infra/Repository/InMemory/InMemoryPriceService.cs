@@ -16,6 +16,16 @@ namespace MetalBandBakery.Core.Services
             {'W', 1.50m },
         };
 
+        public List<decimal> GetAllPriceS()
+        {
+            List<decimal> list = new List<decimal>();
+            foreach (var i in _prices)
+            {
+                list.Add(i.Value);
+            }
+            return list;
+        }
+
         public decimal GetProductPrice(char product)
         {
             return _prices[product];

@@ -161,6 +161,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Repository\DB\Names.txt" />
+    <Content Include="Repository\DB\Prices.txt" />
     <Content Include="Repository\DB\Stocks.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
