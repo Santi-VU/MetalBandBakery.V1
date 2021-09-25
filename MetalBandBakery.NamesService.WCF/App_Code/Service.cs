@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MetalBandBakery.Infra.Repository.DB;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
@@ -11,37 +12,42 @@ public class Service : IService
 {
     public string GetProductName(char product)
     {
-        return MarketingProducts._names[product];
+        if (!DBService.ExistsProductInFile(product, DBService.namesFile))
+            return "";
+
+        List<string> lines = DBService.ReadTextFromFile(DBService.namesFile);
+        int index = DBService.GetIndexOfText(product, lines);
+
+        return lines[index].Split('=')[1];
     }
 
-    public string[] GetAllProducts()
+    public List<string> GetAllProducts()
     {
-        string[] names = new string[MarketingProducts._names.Count];
-        int cont = 0;
-        foreach (var i in MarketingProducts._names)
+        List<string> names = new List<string>();
+        foreach(var i in DBService.ReadTextFromFile(DBService.namesFile))
         {
-            names[cont] = i.Value;
-            cont++;
+            names.Add(i.Split('=')[1]);
         }
-
         return names;
     }
 
     public char GetProductSort(string product)
     {
-        return MarketingProducts._names.FirstOrDefault(p => p.Value == product).Key;
+        if (!DBService.ExistsProductInFile(product[0], DBService.namesFile))
+            return ' ';
+
+        List<string> lines = DBService.ReadTextFromFile(DBService.namesFile);
+        int index = DBService.GetIndexOfText(product[0], lines);
+        return lines[index].Split('=')[0][0];
     }
 
-    public char[] GetAllProductSorts()
+    public List<char> GetAllProductSorts()
     {
-        char[] sorts = new char[MarketingProducts._names.Count];
-        int cont = 0;
-        foreach (var i in MarketingProducts._names)
+        List<char> sorts = new List<char>();
+        foreach (var i in DBService.ReadTextFromFile(DBService.namesFile))
         {
-            sorts[cont] = i.Key;
-            cont++;
+            sorts.Add(i.Split('=')[0][0]);
         }
-
         return sorts;
     }
 }

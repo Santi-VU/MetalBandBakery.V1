@@ -9,16 +9,26 @@ namespace MetalBandBakery.Infra.Repository.HTTP
 {
     public class SoapNameProductService : IMarketingProducts
     {
-        public string[] GetAllProducts()
+        public List<string> GetAllProducts()
         {
             NameService.WCF.IService wcfNameService = new NameService.WCF.ServiceClient();
-            return wcfNameService.GetAllProducts();
+            List<string> names = new List<string>();
+            foreach (var i in wcfNameService.GetAllProducts())
+            {
+                names.Add(i);
+            }
+            return names;
         }
 
-        public char[] GetAllProductSorts()
+        public List<char> GetAllProductSorts()
         {
             NameService.WCF.IService wcfNameService = new NameService.WCF.ServiceClient();
-            return wcfNameService.GetAllProductSorts();
+            List<char> sorts = new List<char>();
+            foreach (var i in wcfNameService.GetAllProductSorts())
+            {
+                sorts.Add(i);
+            }
+            return sorts;
         }
 
         public string GetProductName(char product)

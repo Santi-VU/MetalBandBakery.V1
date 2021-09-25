@@ -26,29 +26,24 @@ public class MarketingProducts : IMarketingProducts
         return _names.FirstOrDefault(p => p.Value == product).Key;
     }
 
-    public char[] GetAllProductSorts()
+    public List<char> GetAllProductSorts()
     {
-        char[] sorts = new char[_names.Count];
-        int cont = 0;
+        List<char> list = new List<char>();
         foreach (var i in _names)
         {
-            sorts[cont] = i.Key;
-            cont++;
+            list.Add(i.Key);
         }
 
-        return sorts;
+        return list;
     }
 
-    public string[] GetAllProducts()
+    public List<string> GetAllProducts()
     {
-        string[] names = new string[_names.Count];
-        int cont = 0;
+        List<string> names = new List<string>();
         foreach (var i in _names)
         {
-            names[cont] = i.Value;
-            cont++;
+            names.Add(i.Value);
         }
-
         return names;
     }
 }

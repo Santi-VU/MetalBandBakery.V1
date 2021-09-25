@@ -81,6 +81,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.NamesService.WCF", "MetalBandBakery.NamesService.WCF\", "{CBDA0555-1016-4771-8AA6-EDD6917813FD}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{634f2ea5-1c23-4766-821e-e7517c4ebdeb}|MetalBandBakery.Infra.dll;{4F279183-FB25-4D23-95C4-A27D068B3B14}|MetalBandBakery.Core.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_49313"
 		Debug.AspNetCompiler.PhysicalPath = "MetalBandBakery.NamesService.WCF\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49313\"

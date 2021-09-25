@@ -1,7 +1,9 @@
-﻿public interface IMarketingProducts
+﻿using System.Collections.Generic;
+
+public interface IMarketingProducts
 {
-    string[] GetAllProducts();
+    List<string> GetAllProducts();
     string GetProductName(char product);
     char GetProductSort(string product);
-    char[] GetAllProductSorts();
+    List<char> GetAllProductSorts();
 }

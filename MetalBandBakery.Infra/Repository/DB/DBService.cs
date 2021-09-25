@@ -9,9 +9,9 @@ namespace MetalBandBakery.Infra.Repository.DB
 {
     public class DBService
     {
-        public static string stocksFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Stocks.txt";
-        public static string pricesFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Prices.txt";
-        public static string namesFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Names.txt";
+        public readonly static string stocksFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Stocks.txt";
+        public readonly static string pricesFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Prices.txt";
+        public readonly static string namesFile = @"C:\Users\holacons\Desktop\VU WorkSpace\MetalBandBakery.V1\MetalBandBakery.Infra\Repository\DB\Names.txt";
 
         public static List<string> ReadTextFromFile(string filePath)
         {

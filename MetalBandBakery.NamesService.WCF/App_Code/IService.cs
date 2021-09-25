@@ -15,11 +15,11 @@ public interface IService
     string GetProductName(char product);
 
     [OperationContract]
-    string[] GetAllProducts();
+    List<string> GetAllProducts();
 
     [OperationContract]
     char GetProductSort(string product);
 
     [OperationContract]
-    char[] GetAllProductSorts();
+    List<char> GetAllProductSorts();
 }
