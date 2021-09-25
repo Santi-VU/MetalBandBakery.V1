@@ -25,7 +25,7 @@ namespace MetalBandBakery.MVC.Controllers
         public ActionResult Bake()
         {
             SoapStockService wcfStockService = new SoapStockService();
-            int[] stocks = wcfStockService.GetStocks();
+            List<int> stocks = wcfStockService.GetStocks();
 
             SoapNameProductService wcfNameService = new SoapNameProductService();
             string[] names = wcfNameService.GetAllProducts();

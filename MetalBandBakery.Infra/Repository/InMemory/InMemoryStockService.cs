@@ -37,7 +37,7 @@ namespace MetalBandBakery.Infra.Repository.InMemory
             throw new NotImplementedException();
         }
 
-        public int[] GetStocks()
+        public List<int> GetStocks()
         {
             throw new NotImplementedException();
         }

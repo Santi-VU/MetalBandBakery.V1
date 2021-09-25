@@ -14,7 +14,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.Inventory.WCF", "MetalBandBakery.Inventory.WCF\", "{F1A3A2A8-03D9-46E3-BDE7-F578D721E285}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
-		ProjectReferences = "{4f279183-fb25-4d23-95c4-a27d068b3b14}|MetalBandBakery.Core.dll;"
+		ProjectReferences = "{4f279183-fb25-4d23-95c4-a27d068b3b14}|MetalBandBakery.Core.dll;{634f2ea5-1c23-4766-821e-e7517c4ebdeb}|MetalBandBakery.Infra.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_55243"
 		Debug.AspNetCompiler.PhysicalPath = "MetalBandBakery.Inventory.WCF\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55243\"

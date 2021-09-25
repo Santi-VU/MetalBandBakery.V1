@@ -86,22 +86,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetShorts">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetShortsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetShortsResult" nillable="true" type="q7:ArrayOfstring" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="AddStockWithQuantity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="product" type="q8:char" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="product" type="q7:char" />
         <xs:element minOccurs="0" name="quantity" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

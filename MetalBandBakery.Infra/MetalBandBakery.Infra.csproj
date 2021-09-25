@@ -67,6 +67,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DB\DBService.cs" />
     <Compile Include="Repository\HTTP\RestFullChangerService.cs" />
     <Compile Include="Repository\HTTP\RestFullPriceService.cs" />
     <Compile Include="Repository\HTTP\SoapNameProductService.cs" />
@@ -123,18 +124,6 @@
     <WCFMetadataStorage Include="Connected Services\Replace.WCF\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\Inventory.WCF\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\Inventory.WCF\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\Inventory.WCF\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\Replace.WCF\Service.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +152,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Inventory.WCF\Service.disco" />
+    <None Include="Connected Services\Inventory.WCF\configuration91.svcinfo" />
+    <None Include="Connected Services\Inventory.WCF\configuration.svcinfo" />
+    <None Include="Connected Services\Inventory.WCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Repository\DB\Stocks.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

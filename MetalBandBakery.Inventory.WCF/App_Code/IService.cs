@@ -27,7 +27,7 @@ public interface IService
 	bool AddStock(char product);
 
 	[OperationContract]
-	int [] GetStocks();
+	List<int> GetStocks();
 
 	[OperationContract]
 	bool AddStockWithQuantity(char product, int quantity);

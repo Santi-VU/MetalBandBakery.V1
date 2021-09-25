@@ -51,12 +51,6 @@ namespace MetalBandBakery.MVC.Inventory.WCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetStocks", ReplyAction="http://tempuri.org/IService/GetStocksResponse")]
         System.Threading.Tasks.Task<int[]> GetStocksAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetShorts", ReplyAction="http://tempuri.org/IService/GetShortsResponse")]
-        string[] GetShorts();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetShorts", ReplyAction="http://tempuri.org/IService/GetShortsResponse")]
-        System.Threading.Tasks.Task<string[]> GetShortsAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockWithQuantity", ReplyAction="http://tempuri.org/IService/AddStockWithQuantityResponse")]
         bool AddStockWithQuantity(char product, int quantity);
         
@@ -137,14 +131,6 @@ namespace MetalBandBakery.MVC.Inventory.WCF {
         
         public System.Threading.Tasks.Task<int[]> GetStocksAsync() {
             return base.Channel.GetStocksAsync();
-        }
-        
-        public string[] GetShorts() {
-            return base.Channel.GetShorts();
-        }
-        
-        public System.Threading.Tasks.Task<string[]> GetShortsAsync() {
-            return base.Channel.GetShortsAsync();
         }
         
         public bool AddStockWithQuantity(char product, int quantity) {
