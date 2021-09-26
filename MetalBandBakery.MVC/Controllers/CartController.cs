@@ -61,11 +61,13 @@ namespace MetalBandBakery.MVC.Controllers
 
         public ActionResult Add(Bake bake)
         {
-            RestFullCartService restCartService = new RestFullCartService();
-            restCartService.AddProduct(bake.Sort[0]);
-
-            SoapStockService wcfStockService = new SoapStockService();
-            wcfStockService.RemoveStockUnit(bake.Sort[0]);
+            SoapStockService wcfStockService = new SoapStockService(); 
+            if (wcfStockService.CanBeRemoved(bake.Sort[0], 1))
+            {
+                wcfStockService.RemoveStockUnit(bake.Sort[0]);
+                RestFullCartService restCartService = new RestFullCartService();
+                restCartService.AddProduct(bake.Sort[0]);
+            }
 
             return Redirect("Cart/Cart");
         }
@@ -73,10 +75,13 @@ namespace MetalBandBakery.MVC.Controllers
         public ActionResult Del(Bake bake)
         {
             RestFullCartService restCartService = new RestFullCartService();
-            restCartService.RemoveProduct(bake.Sort[0]);
-
-            SoapStockService wcfStockService = new SoapStockService();
-            wcfStockService.AddStockUnit(bake.Sort[0]);
+            int unitsInCart = restCartService.GetUnitsOfProduct(bake.Sort[0]);
+            if (unitsInCart > 0)
+            {
+                restCartService.RemoveProduct(bake.Sort[0]);
+                SoapStockService wcfStockService = new SoapStockService();
+                wcfStockService.AddStockUnit(bake.Sort[0]);
+            }
 
             return Redirect("Cart/Cart");
         }

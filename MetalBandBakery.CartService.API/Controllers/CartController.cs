@@ -119,5 +119,20 @@ namespace MetalBandBakery.CartService.API.Controllers
             lines.Add("0,00");
             DBService.ReWriteFile(DBService.cartValueFile, lines);
         }
+
+        [HttpGet("getUnitsOfProduct/{product}")]
+        public int GetUnitsOfProduct(char product)
+        {
+            List<string> lines = DBService.ReadTextFromFile(DBService.cartFile);
+
+            if (!DBService.ExistsProductInFile(product, DBService.cartFile))
+                return -1;
+
+            int index = DBService.GetIndexOfText(product, lines);
+            if (index == -1)
+                return -1;
+
+            return Int32.Parse(lines[index].Split('=')[1]);
+        }
     }
 }

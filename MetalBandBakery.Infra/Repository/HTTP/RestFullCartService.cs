@@ -60,6 +60,23 @@ namespace MetalBandBakey.Infra.Repository
             }
         }
 
+        public int GetUnitsOfProduct(char product)
+        {
+            string apiUrl = "https://localhost:44307/cart";
+
+            using (WebClient client = new WebClient())
+            {
+                client.Headers["Content-type"] = "application/json";
+                client.Encoding = Encoding.UTF8;
+
+                string json = client.DownloadString($"{apiUrl}/getUnitsOfProduct/{product}");
+
+                var itemPrice = JsonConvert.DeserializeObject<int>(json);
+
+                return itemPrice;
+            }
+        }
+
         public bool Pay(decimal payValue)
         {
             string apiUrl = "https://localhost:44307/cart";

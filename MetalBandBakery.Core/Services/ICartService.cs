@@ -14,5 +14,6 @@ namespace MetalBandBakery.Core.Services
         bool Pay(decimal payValue);
         decimal GetCurrentPayed();
         void RestartCart();
+        int GetUnitsOfProduct(char product);
     }
 }
