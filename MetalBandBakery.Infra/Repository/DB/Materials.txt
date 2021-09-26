@@ -1,0 +1,9 @@
+harina=0,20
+mantequilla=0,25
+azucar=0,15
+sal=0,15
+chocolate=0,45
+leche=0,40
+agua=0,25
+botella=0,50
+beneficio=0,40

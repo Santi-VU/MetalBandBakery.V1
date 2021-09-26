@@ -21,17 +21,17 @@
         <tr>
             <td>@i.Sort</td>
             <td>@i.Name</td>
-            <td>@Convert.ToDecimal(i.Price).ToString()</td>
+            <td>@i.Price</td>
             <td>@i.Stock</td>
             <td>
                 <input type="button" value="Add" onclick="location.href =
                 '@Url.Action("Add", "Cart", new MetalBandBakery.MVC.Models.Bake
-                            { Sort = i.Sort, Name = i.Name, Price = i.Price, Stock = i.Stock })'" />
+                            { Sort = i.Sort, Name = i.Name, Stock = i.Stock })'" />
             </td>
             <td>
                 <input type="button" value="Del" onclick="location.href =
                 '@Url.Action("Del", "Cart", new MetalBandBakery.MVC.Models.Bake
-                            { Sort = i.Sort, Name = i.Name, Price = i.Price, Stock = i.Stock })'" />
+                            { Sort = i.Sort, Name = i.Name, Stock = i.Stock })'" />
             </td>
         </tr>
     }

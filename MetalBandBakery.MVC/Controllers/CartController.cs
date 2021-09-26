@@ -31,15 +31,20 @@ namespace MetalBandBakery.MVC.Controllers
             List<string> names = wcfNameService.GetAllProducts();
             List<char> sorts = wcfNameService.GetAllProductSorts();
 
-            RestfullPriceService restPriceService = new RestfullPriceService();
-            List<decimal> prices = restPriceService.GetAllPriceS();           
+            RestFullChangerService restChangerService = new RestFullChangerService();      
 
             var viewModel = new ListCartViewModel();
             viewModel.products = new List<Bake>();
             for (int i = 0; i < names.Count; i++)
             {
+                List<Material> materials = new List<Material>();
+                foreach (var j in restChangerService.GetListOfProduct(sorts[i]))
+                {
+                    materials.Add(new Material() { Name = j.Item1, Price = j.Item2 });
+                }
+
                 viewModel.products.Add(new Models.Bake 
-                    { Sort = sorts[i].ToString(), Name = names[i], Price = prices[i], Stock = stocks[i]}
+                    { Sort = sorts[i].ToString(), Name = names[i], Stock = stocks[i], Materials = materials}
                 );
             }
 

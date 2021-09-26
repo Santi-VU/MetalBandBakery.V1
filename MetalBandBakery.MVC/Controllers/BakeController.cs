@@ -31,14 +31,19 @@ namespace MetalBandBakery.MVC.Controllers
             List<string> names = wcfNameService.GetAllProducts();
             List<char> sorts = wcfNameService.GetAllProductSorts();
 
-            RestfullPriceService restPriceService = new RestfullPriceService();
-            List<decimal> prices = restPriceService.GetAllPriceS();           
+            RestFullChangerService restChangerService = new RestFullChangerService();
 
             var viewModel = new ListBakeViewModel();
             viewModel.bakes = new List<Bake>();
             for (int i = 0; i < names.Count; i++)
             {
-                viewModel.bakes.Add(new Models.Bake { Sort = sorts[i].ToString(), Name = names[i], Price = prices[i], Stock = stocks[i]});
+                List<Material> materials = new List<Material>();
+                foreach (var j in restChangerService.GetListOfProduct(sorts[i]))
+                {
+                    materials.Add(new Material() { Name = j.Item1, Price = j.Item2 });
+                }
+
+                viewModel.bakes.Add(new Models.Bake { Sort = sorts[i].ToString(), Name = names[i], Stock = stocks[i], Materials = materials});
             }
 
             return View(viewModel);
@@ -47,8 +52,7 @@ namespace MetalBandBakery.MVC.Controllers
         public ActionResult Edit(Bake bake)
         {
             var viewModel = new EditBakeViewModel();
-            //Starts with value 0 in Stock for edit
-            bake.Stock = 0;
+
             viewModel.Product = bake;
 
             return View(bake);
@@ -58,8 +62,8 @@ namespace MetalBandBakery.MVC.Controllers
         {
             var viewModel = new EditBakeViewModel();
 
-            MetalBandBakery.Core.Services.IChangerService _RESTchangerService = new RestFullChangerService();
-            _RESTchangerService.ModifyPrice(ob.Sort[0], Decimal.Parse(ob.Price.ToString()));
+            IPriceService _restPriceService = new RestfullPriceService();
+            _restPriceService.ModifyPrice(ob.Sort[0], Decimal.Parse(ob.Price.ToString()));
 
             IStockService _WCFstockService = new SoapStockService();
             _WCFstockService.AddStockWithQuantity(ob.Sort[0], ob.Stock);

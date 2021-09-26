@@ -8,6 +8,9 @@ namespace MetalBandBakery.Core.Services
 {
     public interface IChangerService
     {
-        bool ModifyPrice(char product, decimal newPrice);
+        decimal GetMatsPriceOf(char product);
+        bool RemoveMatOf(char product, string mat);
+        bool AddMatOf(char product, string mat);
+        List<Tuple<string, decimal>> GetListOfProduct(char product);
     }
 }

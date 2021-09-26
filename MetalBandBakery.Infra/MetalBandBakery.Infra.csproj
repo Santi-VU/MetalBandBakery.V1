@@ -162,8 +162,10 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Repository\DB\Materials.txt" />
     <Content Include="Repository\DB\CartValue.txt" />
     <Content Include="Repository\DB\Names.txt" />
+    <Content Include="Repository\DB\ProductMats.txt" />
     <Content Include="Repository\DB\Prices.txt" />
     <Content Include="Repository\DB\Cart.txt" />
     <Content Include="Repository\DB\Stocks.txt" />

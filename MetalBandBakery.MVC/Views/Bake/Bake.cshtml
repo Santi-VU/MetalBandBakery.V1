@@ -23,7 +23,7 @@
         <td>@Convert.ToDecimal(i.Price).ToString()</td>
         <td>@i.Stock</td>
         <td><input type="button" value="Edit" onclick="location.href =
-        '@Url.Action("Edit", "Bake", new MetalBandBakery.MVC.Models.Bake { Sort = i.Sort, Name = i.Name, Price = i.Price, Stock = i.Stock })'" /></td>
+        '@Url.Action("Edit", "Bake", new MetalBandBakery.MVC.Models.Bake { Sort = i.Sort, Name = i.Name, Materials = i.Materials, Stock = i.Stock })'" /></td>
     </tr>
     }
 </table>

@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Models\Bake.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewsModels\EditBakeViewModel.cs" />
     <Compile Include="ViewsModels\ListBakeViewModel.cs" />

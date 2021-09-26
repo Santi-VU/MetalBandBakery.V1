@@ -8,30 +8,24 @@ namespace MetalBandBakery.Core.Services
 {
     public class InMemoryChangerService : IChangerService
     {
-        private IPriceService _RESTpriceService;
-        public static Dictionary<char, decimal> _prices = new Dictionary<char, decimal>()
+        public bool AddMatOf(char product, string mat)
         {
-            {'B', 0.65m },
-            {'M', 1.00m },
-            {'C', 1.35m },
-            {'W', 1.50m },
-        };
-
-        public InMemoryChangerService (IPriceService RESTpriceService)
-        {
-            _RESTpriceService = RESTpriceService;
+            throw new NotImplementedException();
         }
 
-        public bool ModifyPrice(char product, decimal newPrice)
+        public List<Tuple<string, decimal>> GetListOfProduct(char product)
         {
-            if (!_prices.ContainsKey(product))
-                return false;
+            throw new NotImplementedException();
+        }
 
-            if (newPrice <= 0)
-                return false;
+        public decimal GetMatsPriceOf(char product)
+        {
+            throw new NotImplementedException();
+        }
 
-            _RESTpriceService.ModifyPrice(product, newPrice);
-            return true;
+        public bool RemoveMatOf(char product, string mat)
+        {
+            throw new NotImplementedException();
         }
     }
 }

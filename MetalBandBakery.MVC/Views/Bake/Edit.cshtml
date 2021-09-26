@@ -5,20 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Editing Product: @Model.Name</h3>
+<h3>Editing Product: @Model.Name (Sort: @Model.Sort)</h3>
 @using (Html.BeginForm("BakeEdited", "Bake", FormMethod.Post))
 {
     {
-        @Model.Stock = 0;
-        <input type="hidden" name="OldStock" .Index" value="@Model.Stock">
-
-        @Html.TextBoxFor(model => model.Sort, new { @readonly = "readonly" })
+        @Html.TextBoxFor(model => model.Sort, new { @readonly = "readonly", style = "display: none;" })
         <br />
-        @Html.TextBoxFor(model => model.Name, new { @readonly = "readonly" })
+        @Html.TextBoxFor(model => model.Name, new { @readonly = "readonly", style = "display: none;" })
         <br />
         @Html.TextBoxFor(model => model.Price)
         <br />
-        @Html.TextBoxFor(model => model.Stock)
+        @Html.TextBoxFor(model => model.Stock, new { @Value = "0"})
         <br />
         <input type="submit" value="Edit" />
     }

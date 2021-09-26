@@ -1,11 +1,13 @@
 ﻿using MetalBandBakery.ChangerService.Api.Repositories;
 using MetalBandBakery.Core.Services;
+using MetalBandBakery.Infra.Repository.DB;
 using MetalBandBakey.Infra.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MetalBandBakery.ChangerService.Api.Controllers
@@ -32,18 +34,107 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
             return list;
         }
 
-        [HttpGet("{product}/{newPrice}")]
-        public bool SetModifiyPrice(char product, decimal newPrice)
+        [HttpGet("getMatsPriceOf/{product}")]
+        public decimal GetMatsPriceOf(char product)
         {
-            if (!Repositories.ChangerPrice._prices.ContainsKey(product))
+            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+                return -1;
+            List<string> productMats = DBService.ReadTextFromFile(DBService.productMatsFile);
+            int index = DBService.GetIndexOfText(product, productMats);
+            if (index == -1)
+                return -1;
+
+            string[] currMats = productMats[index].Split('=')[1].Split(',');
+
+            if (currMats == null || currMats.Length == 0)
+                return -1;
+
+            decimal totalPrice = 0.00m;
+            List<string> prices = DBService.ReadTextFromFile(DBService.materialsFile);
+            int j = -1;
+            foreach (var i in currMats)
+            {
+                j = DBService.GetIndexOfText(i, prices);
+                if (j == -1)
+                    continue;
+                totalPrice += Decimal.Parse(prices[j].Split('=')[1]);
+            }
+
+            return totalPrice;
+        }
+
+        [HttpGet("removeMatOf/{product}/{mat}")]
+        public bool RemoveMatOf(char product, string mat)
+        {
+            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+                return false;
+            List<string> productsMats = DBService.ReadTextFromFile(DBService.productMatsFile);
+            int index = DBService.GetIndexOfText(product, productsMats);
+            if (index == -1)
                 return false;
 
-            if (newPrice <= 0)
-                return false;
+            string[] currMats = productsMats[index].Split('=')[1].Split(',');
+            StringBuilder sb = new StringBuilder();
+            foreach (var i in currMats)
+            {
+                if (i == mat)
+                    continue;
+                sb.Append(i + ",");
+            }
+            string aux = sb.ToString().Substring(0, sb.ToString().Length - 1);
 
-            IPriceService _RESTpriceService = new RestfullPriceService();
-            _RESTpriceService.ModifyPrice(product, newPrice);
+            productsMats[index] = product.ToString() + "=" + aux;
+            DBService.ReWriteFile(DBService.productMatsFile, productsMats);
+            
             return true;
+        }
+
+        [HttpGet("addMatOf/{product}/{mat}")]
+        public bool AddMatOf(char product, string mat)
+        {
+            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+                return false;
+            List<string> productsMats = DBService.ReadTextFromFile(DBService.productMatsFile);
+
+            int index = DBService.GetIndexOfText(product, productsMats);
+            if (index == -1)
+                return false;
+
+            string currProducts = productsMats[index].Split('=')[1];
+            currProducts = currProducts + "," + mat;
+            productsMats[index] = product.ToString() + "=" + currProducts;
+
+            DBService.ReWriteFile(DBService.productMatsFile, productsMats);
+            return true;
+        }
+
+        [HttpGet("getListOfProduct/{product}")]
+        public List<Tuple<string, decimal>> GetListOfProduct(char product)
+        {
+            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+                return null;
+
+            List<string> productsMats = DBService.ReadTextFromFile(DBService.productMatsFile);
+            List<string> pricesMats = DBService.ReadTextFromFile(DBService.materialsFile);
+            List<Tuple<string, decimal>> list = new List<Tuple<string, decimal>>();
+
+            int index = DBService.GetIndexOfText(product, productsMats);
+            if (index == -1)
+                return null;
+            string[] currMats = productsMats[index].Split('=')[1].Split(',');
+
+            if (currMats == null || currMats.Length == 0)
+                return null;
+
+            int indexPrice = -1;
+            foreach (var i in currMats){
+                indexPrice = DBService.GetIndexOfText(i, pricesMats);
+                if (indexPrice == -1)
+                    continue;
+                list.Add(new Tuple<string, decimal>(i, Decimal.Parse(pricesMats[indexPrice].Split('=')[1])));
+            }
+
+            return list;
         }
     }
 }

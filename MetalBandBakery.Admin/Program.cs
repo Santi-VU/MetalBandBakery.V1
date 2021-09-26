@@ -11,7 +11,7 @@ namespace MetalBandBakery.Admin
 {
     class Program
     {
-        private static IChangerService _RESTchangerService = new RestFullChangerService();
+        private static IPriceService _restPriceService = new RestfullPriceService();
         private static IPriceService _RESTpriceService = new RestfullPriceService();
 
         static void Main(string[] args)
@@ -25,7 +25,7 @@ namespace MetalBandBakery.Admin
                 decimal newPrice = Convert.ToDecimal(Console.ReadLine());
 
                 decimal lastPrice = _RESTpriceService.GetProductPrice(productToChange[0]);
-                if (!_RESTchangerService.ModifyPrice(productToChange[0], newPrice))
+                if (!_restPriceService.ModifyPrice(productToChange[0], newPrice))
                 {
                     Console.WriteLine($"No pudo modificarse el precio del producto {productToChange}");
                 }
