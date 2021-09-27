@@ -44,6 +44,18 @@ namespace MetalBandBakery.console.Inventory.WCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStock", ReplyAction="http://tempuri.org/IService/AddStockResponse")]
         System.Threading.Tasks.Task<bool> AddStockAsync(char product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetStocks", ReplyAction="http://tempuri.org/IService/GetStocksResponse")]
+        int[] GetStocks();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetStocks", ReplyAction="http://tempuri.org/IService/GetStocksResponse")]
+        System.Threading.Tasks.Task<int[]> GetStocksAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockWithQuantity", ReplyAction="http://tempuri.org/IService/AddStockWithQuantityResponse")]
+        bool AddStockWithQuantity(char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockWithQuantity", ReplyAction="http://tempuri.org/IService/AddStockWithQuantityResponse")]
+        System.Threading.Tasks.Task<bool> AddStockWithQuantityAsync(char product, int quantity);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +123,22 @@ namespace MetalBandBakery.console.Inventory.WCF {
         
         public System.Threading.Tasks.Task<bool> AddStockAsync(char product) {
             return base.Channel.AddStockAsync(product);
+        }
+        
+        public int[] GetStocks() {
+            return base.Channel.GetStocks();
+        }
+        
+        public System.Threading.Tasks.Task<int[]> GetStocksAsync() {
+            return base.Channel.GetStocksAsync();
+        }
+        
+        public bool AddStockWithQuantity(char product, int quantity) {
+            return base.Channel.AddStockWithQuantity(product, quantity);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddStockWithQuantityAsync(char product, int quantity) {
+            return base.Channel.AddStockWithQuantityAsync(product, quantity);
         }
     }
 }

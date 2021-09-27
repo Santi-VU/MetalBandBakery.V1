@@ -1,4 +1,6 @@
-﻿namespace MetalBandBakery.Core.Services
+﻿using System.Collections.Generic;
+
+namespace MetalBandBakery.Core.Services
 {
     public interface IStockService
     {
@@ -7,5 +9,9 @@
         int ManyStock(char product);
         bool CanBeRemoved(char product, int amount);
         void AddStock(char product);
+        bool AddStockWithQuantity(char product, int quantity);
+        List<int> GetStocks();
+        bool RemoveStockUnit(char product);
+        void AddStockUnit(char product);
     }
 }

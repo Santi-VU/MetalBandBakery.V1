@@ -44,6 +44,30 @@ namespace MetalBandBakery.Infra.Inventory.WCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStock", ReplyAction="http://tempuri.org/IService/AddStockResponse")]
         System.Threading.Tasks.Task<bool> AddStockAsync(char product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetStocks", ReplyAction="http://tempuri.org/IService/GetStocksResponse")]
+        int[] GetStocks();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetStocks", ReplyAction="http://tempuri.org/IService/GetStocksResponse")]
+        System.Threading.Tasks.Task<int[]> GetStocksAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockWithQuantity", ReplyAction="http://tempuri.org/IService/AddStockWithQuantityResponse")]
+        bool AddStockWithQuantity(char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockWithQuantity", ReplyAction="http://tempuri.org/IService/AddStockWithQuantityResponse")]
+        System.Threading.Tasks.Task<bool> AddStockWithQuantityAsync(char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveStockUnit", ReplyAction="http://tempuri.org/IService/RemoveStockUnitResponse")]
+        bool RemoveStockUnit(char product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveStockUnit", ReplyAction="http://tempuri.org/IService/RemoveStockUnitResponse")]
+        System.Threading.Tasks.Task<bool> RemoveStockUnitAsync(char product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockUnit", ReplyAction="http://tempuri.org/IService/AddStockUnitResponse")]
+        void AddStockUnit(char product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockUnit", ReplyAction="http://tempuri.org/IService/AddStockUnitResponse")]
+        System.Threading.Tasks.Task AddStockUnitAsync(char product);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +135,38 @@ namespace MetalBandBakery.Infra.Inventory.WCF {
         
         public System.Threading.Tasks.Task<bool> AddStockAsync(char product) {
             return base.Channel.AddStockAsync(product);
+        }
+        
+        public int[] GetStocks() {
+            return base.Channel.GetStocks();
+        }
+        
+        public System.Threading.Tasks.Task<int[]> GetStocksAsync() {
+            return base.Channel.GetStocksAsync();
+        }
+        
+        public bool AddStockWithQuantity(char product, int quantity) {
+            return base.Channel.AddStockWithQuantity(product, quantity);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddStockWithQuantityAsync(char product, int quantity) {
+            return base.Channel.AddStockWithQuantityAsync(product, quantity);
+        }
+        
+        public bool RemoveStockUnit(char product) {
+            return base.Channel.RemoveStockUnit(product);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveStockUnitAsync(char product) {
+            return base.Channel.RemoveStockUnitAsync(product);
+        }
+        
+        public void AddStockUnit(char product) {
+            base.Channel.AddStockUnit(product);
+        }
+        
+        public System.Threading.Tasks.Task AddStockUnitAsync(char product) {
+            return base.Channel.AddStockUnitAsync(product);
         }
     }
 }

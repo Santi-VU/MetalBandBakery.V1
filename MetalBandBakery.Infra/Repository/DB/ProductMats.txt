@@ -1,0 +1,4 @@
+B=harina,mantequilla,azucar,leche,chocolate,beneficio
+M=harina,mantequilla,azucar,leche,beneficio
+C=harina,mantequilla,azucar,sal,leche,chocolate,beneficio
+W=beneficio,agua,botella

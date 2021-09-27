@@ -1,0 +1,36 @@
+﻿@model MetalBandBakery.MVC.Models.Cart
+
+@{
+    ViewBag.Title = "Resume";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Resume of your order</h2>
+<h4>Products</h4>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+    </tr>
+
+    @foreach (var i in Model.productList)
+    {
+        <tr>
+            <td>@i.Item1</td>
+            <td>@i.Item2</td>
+        </tr>
+    }
+</table>
+
+<h4>Total price of order: @Model.totalValue$</h4>
+@if (Model.totalPayed > Model.totalValue)
+{
+    <h4>You payed: @Model.totalPayed$. Get Back: @decimal.Parse((Model.totalPayed - Model.totalValue).ToString())$</h4>
+} else
+{
+    <h4>You payed: @Model.totalPayed$ of @Model.totalValue$</h4>
+}
+
+<input type="button" value="Back" id="btnBack" name="btnBack" onclick="location.href =
+        '@Url.Action("ResetCart", "Cart")'" enabled />
+

@@ -14,7 +14,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.Inventory.WCF", "MetalBandBakery.Inventory.WCF\", "{F1A3A2A8-03D9-46E3-BDE7-F578D721E285}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
-		ProjectReferences = "{4f279183-fb25-4d23-95c4-a27d068b3b14}|MetalBandBakery.Core.dll;"
+		ProjectReferences = "{4f279183-fb25-4d23-95c4-a27d068b3b14}|MetalBandBakery.Core.dll;{634f2ea5-1c23-4766-821e-e7517c4ebdeb}|MetalBandBakery.Infra.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_55243"
 		Debug.AspNetCompiler.PhysicalPath = "MetalBandBakery.Inventory.WCF\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55243\"
@@ -36,6 +36,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.Inventory.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.Infra", "MetalBandBakery.Infra\MetalBandBakery.Infra.csproj", "{634F2EA5-1C23-4766-821E-E7517C4EBDEB}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD} = {CBDA0555-1016-4771-8AA6-EDD6917813FD}
 		{F1A3A2A8-03D9-46E3-BDE7-F578D721E285} = {F1A3A2A8-03D9-46E3-BDE7-F578D721E285}
 	EndProjectSection
 EndProject
@@ -67,6 +68,41 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.ReplaceServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetalBandBakery.PriceService.Api", "MetalBandBakery.PriceService.Api\MetalBandBakery.PriceService.Api.csproj", "{D143F10B-7D97-4E69-9F99-BB4DBC9BA164}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetalBandBakery.ChangerService.Api", "MetalBandBakery.ChangerService.Api\MetalBandBakery.ChangerService.Api.csproj", "{DC4CEE46-DB50-41B7-864C-72A7ACD6442D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.Admin", "MetalBandBakery.Admin\MetalBandBakery.Admin.csproj", "{DF737945-36AE-4DA3-A486-C4F90AB4A447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.MVC", "MetalBandBakery.MVC\MetalBandBakery.MVC.csproj", "{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD} = {CBDA0555-1016-4771-8AA6-EDD6917813FD}
+		{F1A3A2A8-03D9-46E3-BDE7-F578D721E285} = {F1A3A2A8-03D9-46E3-BDE7-F578D721E285}
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.NamesService.WCF", "MetalBandBakery.NamesService.WCF\", "{CBDA0555-1016-4771-8AA6-EDD6917813FD}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{634f2ea5-1c23-4766-821e-e7517c4ebdeb}|MetalBandBakery.Infra.dll;{4F279183-FB25-4D23-95C4-A27D068B3B14}|MetalBandBakery.Core.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49313"
+		Debug.AspNetCompiler.PhysicalPath = "MetalBandBakery.NamesService.WCF\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49313\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49313"
+		Release.AspNetCompiler.PhysicalPath = "MetalBandBakery.NamesService.WCF\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49313\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49313"
+		SlnRelativePath = "MetalBandBakery.NamesService.WCF\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.CartService.API", "MetalBandBakery.CartService.API\MetalBandBakery.CartService.API.csproj", "{602B8D42-C768-4C47-9484-340664D79E59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +133,26 @@ Global
 		{D143F10B-7D97-4E69-9F99-BB4DBC9BA164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D143F10B-7D97-4E69-9F99-BB4DBC9BA164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D143F10B-7D97-4E69-9F99-BB4DBC9BA164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC4CEE46-DB50-41B7-864C-72A7ACD6442D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4CEE46-DB50-41B7-864C-72A7ACD6442D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4CEE46-DB50-41B7-864C-72A7ACD6442D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4CEE46-DB50-41B7-864C-72A7ACD6442D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF737945-36AE-4DA3-A486-C4F90AB4A447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF737945-36AE-4DA3-A486-C4F90AB4A447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF737945-36AE-4DA3-A486-C4F90AB4A447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF737945-36AE-4DA3-A486-C4F90AB4A447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9B1AB0-A794-41B9-88EB-F226BD3917C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDA0555-1016-4771-8AA6-EDD6917813FD}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{602B8D42-C768-4C47-9484-340664D79E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{602B8D42-C768-4C47-9484-340664D79E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{602B8D42-C768-4C47-9484-340664D79E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{602B8D42-C768-4C47-9484-340664D79E59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

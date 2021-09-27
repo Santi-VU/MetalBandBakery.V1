@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using MetalBandBakery.Infra.Repository.DB;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,23 +23,63 @@ namespace MetalBandBakery.PriceService.Api.Controllers
         public IEnumerable<Tuple<char, decimal>> Get()
         {
             List<Tuple<char, decimal>> list = new List<Tuple<char, decimal>>();
-            foreach (var i in Repositories.PriceProduct._prices)
+
+            List<string> lines = DBService.ReadTextFromFile(DBService.pricesFile);
+            foreach(var i in lines)
             {
-                list.Add(new Tuple<char, decimal>(i.Key, i.Value));
+                string[] aux = i.Split('=');
+                list.Add(new Tuple<char, decimal>(aux[0][0], Decimal.Parse(aux[1])));
             }
+
             return list;
         }
 
-        [HttpGet("{product}")]
+        [HttpGet("getPrice/{product}")]
         public decimal GetPrice(char product)
         {
-            return Repositories.PriceProduct._prices[product];
+            if (!DBService.ExistsProductInFile(product, DBService.pricesFile))
+                return -1;
+
+            List<string> lines = DBService.ReadTextFromFile(DBService.pricesFile);
+            int index = DBService.GetIndexOfText(product, lines);
+
+            return Decimal.Parse(lines[index].Split('=')[1]);
         }
 
-        [HttpGet("{moneyForPay}/{totalBuy}")]
+        [HttpGet("isEnough/{moneyForPay}/{totalBuy}")]
         public bool GetEnough(decimal moneyForPay, decimal totalBuy)
         {
             return moneyForPay >= totalBuy;
+        }
+
+        [HttpGet("setPrice/{product}/{newPrice}")]
+        public bool GetNewPrice(char product, decimal newPrice)
+        {
+            if (!DBService.ExistsProductInFile(product, DBService.pricesFile))
+                return false;
+
+            if (newPrice <= 0)
+                return false;
+
+            List<string> lines = DBService.ReadTextFromFile(DBService.pricesFile);
+            int index = DBService.GetIndexOfText(product, lines);
+
+            lines[index] = product.ToString() + "=" + newPrice;
+            DBService.ReWriteFile(DBService.pricesFile, lines);
+
+            //Repositories.PriceProduct._prices[product] = newPrice;
+            return true;
+        }
+
+        [HttpGet("getAllPrices")]
+        public List<decimal> GetAllPriceS()
+        {
+            List<decimal> prices = new List<decimal>();
+            foreach (var i in DBService.ReadTextFromFile(DBService.pricesFile))
+            {
+                prices.Add(Decimal.Parse(i.Split('=')[1]));
+            }
+            return prices;
         }
     }
 }

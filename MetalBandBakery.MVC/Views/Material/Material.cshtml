@@ -1,0 +1,26 @@
+﻿@model MetalBandBakery.MVC.ViewsModels.ListMaterialViewModel
+
+@{
+    ViewBag.Title = "Material";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Material list</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    
+    @foreach (var i in Model.Materials)
+    {
+    <tr>
+        <td>@i.Name</td>
+        <td>@i.Price</td>
+        <td><input type="button" value="Edit" onclick="location.href =
+        '@Url.Action("Edit", "Material", new MetalBandBakery.MVC.Models.Material {Name = i.Name, Price = i.Price})'" /></td>
+    </tr>
+    }
+</table>
+

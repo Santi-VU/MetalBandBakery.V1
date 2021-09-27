@@ -16,6 +16,16 @@ namespace MetalBandBakery.Core.Services
             {'W', 1.50m },
         };
 
+        public List<decimal> GetAllPriceS()
+        {
+            List<decimal> list = new List<decimal>();
+            foreach (var i in _prices)
+            {
+                list.Add(i.Value);
+            }
+            return list;
+        }
+
         public decimal GetProductPrice(char product)
         {
             return _prices[product];
@@ -24,6 +34,18 @@ namespace MetalBandBakery.Core.Services
         public bool ItIsEnoughtMoney(decimal moneyForPay, decimal totalBuy)
         {
             return moneyForPay >= totalBuy;
+        }
+
+        public bool ModifyPrice(char product, decimal newPrice)
+        {
+            if (!_prices.ContainsKey(product))
+                return false;
+
+            if (newPrice <= 0)
+                return false;
+
+            _prices[product] = newPrice;
+            return true;
         }
     }
 }

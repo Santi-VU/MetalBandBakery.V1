@@ -1,0 +1,22 @@
+﻿@model MetalBandBakery.MVC.Models.Bake
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Editing Product: @Model.Name (Sort: @Model.Sort)</h3>
+@using (Html.BeginForm("BakeEdited", "Bake", FormMethod.Post))
+{
+    {
+        @Html.TextBoxFor(model => model.Sort, new { @readonly = "readonly", style = "display: none;" })
+        <br />
+        @Html.TextBoxFor(model => model.Name, new { @readonly = "readonly", style = "display: none;" })
+        <br />
+        @Html.TextBoxFor(model => model.Price, new { @readonly = "readonly", style = "display: none;" })
+        <br />
+        @Html.TextBoxFor(model => model.Stock, new { @Value = "0"})
+        <br />
+        <input type="submit" value="Edit" />
+    }
+}

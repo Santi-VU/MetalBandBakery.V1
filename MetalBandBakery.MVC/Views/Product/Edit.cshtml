@@ -1,0 +1,59 @@
+﻿@model MetalBandBakery.MVC.ViewsModels.EditProductViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    MetalBandBakery.MVC.ViewsModels.GestMaterialViewModel gestModel;
+}
+
+<h2>Edit Product @Model.Product.Name (Sort: @Model.Product.Sort)</h2>
+
+<h2>Product Materials</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var i in Model.Product.Materials)
+    {
+        <tr>
+            <td>@i.Name</td>
+            <td>@i.Price</td>
+        </tr>
+    }
+    <tfoot>
+        Total cost of product: @Model.Product.Price$ (0,40$ are of benefits)
+    </tfoot>
+</table>
+
+<h2>All materiales to add/Remove</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var i in Model.Materials)
+    {
+        {
+            gestModel = new MetalBandBakery.MVC.ViewsModels.GestMaterialViewModel();
+            gestModel.Sort = Model.Product.Sort[0];
+            gestModel.Material = i.Name;
+        }
+        <tr>
+            <td>@i.Name</td>
+            <td>@i.Price</td>
+            <td>
+                <input type="button" value="Add" onclick="location.href =
+                                '@Url.Action("Add", "Product", gestModel)'" />
+            </td>
+            <td>
+                <input type="button" value="Del" onclick="location.href =
+                                '@Url.Action("Del", "Product", gestModel)'" />
+            </td>
+        </tr>
+    }
+</table>
+

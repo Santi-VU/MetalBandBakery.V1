@@ -22,6 +22,16 @@ namespace MetalBandBakery.Infra.Repository.InMemory
             throw new NotImplementedException();
         }
 
+        public void AddStockUnit(char product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddStockWithQuantity(char product, int quantity)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CanBeRemoved(char product, int amount)
         {
             throw new NotImplementedException();
@@ -32,12 +42,22 @@ namespace MetalBandBakery.Infra.Repository.InMemory
             throw new NotImplementedException();
         }
 
+        public List<int> GetStocks()
+        {
+            throw new NotImplementedException();
+        }
+
         public int ManyStock(char product)
         {
             throw new NotImplementedException();
         }
 
         public void RemoveStock(char product, int amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveStockUnit(char product)
         {
             throw new NotImplementedException();
         }

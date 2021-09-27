@@ -7,25 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MetalBandBakery.console.Services;
+using System.Threading;
 
 namespace MetalBandBakery.console
 {
-    class Application
+    public class Application
     {
         private IReplaceStockService _replaceService;
         private IPriceService _priceService;
         private IStockService _stockService;
-        
+
+        private static bool isRunning;
+
         public Application(IPriceService priceService, IStockService stockService, IReplaceStockService replaceService)
         {
             _priceService = priceService;
             _stockService = stockService;
             _replaceService = replaceService;
+            isRunning = true;
         }
 
         public void Run()
         {
-            while (true)
+            while (isRunning)
             {
                 // Se inicia nuevo pedido, se muestran productos
                 Order order = new Order();
@@ -46,18 +50,23 @@ namespace MetalBandBakery.console
 
                 //Se comprueba Stock de los productos comprados en OrderLines, se remplaza si es necesario.
                 ReplaceItemsIfNeeded(order);
-
-                // Evitar cierre de la aplicación al finalizar
-                Console.ReadLine();
             }
+        }
+
+        public void ResetApp()
+        {
+            isRunning = false;
+            Thread.Sleep(100);
+            isRunning = true;
+            Run();
         }
 
         private void ShowProducts()
         {
-            Console.WriteLine($@"B	Brownie	    $0.65	{_stockService.ManyStock('B')}   
-M	Muffin	    $1.00	{_stockService.ManyStock('M')} 
-C	Cake Pop    $1.35	{_stockService.ManyStock('C')} 
-W	Water	    $1.50	{_stockService.ManyStock('W')} ");
+            Console.WriteLine($@"B	Brownie	    ${_priceService.GetProductPrice('B')}	Stock: {_stockService.ManyStock('B')}   
+M	Muffin	    ${_priceService.GetProductPrice('M')}	Stock: {_stockService.ManyStock('M')} 
+C	Cake Pop    ${_priceService.GetProductPrice('C')}	Stock: {_stockService.ManyStock('C')} 
+W	Water	    ${_priceService.GetProductPrice('W')}	Stock: {_stockService.ManyStock('W')} ");
         }
 
         private string[] UserAskForProducts()
