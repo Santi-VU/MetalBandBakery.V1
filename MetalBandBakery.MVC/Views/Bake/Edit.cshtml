@@ -13,7 +13,7 @@
         <br />
         @Html.TextBoxFor(model => model.Name, new { @readonly = "readonly", style = "display: none;" })
         <br />
-        @Html.TextBoxFor(model => model.Price)
+        @Html.TextBoxFor(model => model.Price, new { @readonly = "readonly", style = "display: none;" })
         <br />
         @Html.TextBoxFor(model => model.Stock, new { @Value = "0"})
         <br />

@@ -74,11 +74,16 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
                 return false;
 
             string[] currMats = productsMats[index].Split('=')[1].Split(',');
+            bool firstOcurrence = false;
             StringBuilder sb = new StringBuilder();
             foreach (var i in currMats)
             {
-                if (i == mat)
+                if (i == mat && firstOcurrence == false)
+                {
+                    firstOcurrence = true;
                     continue;
+                }
+
                 sb.Append(i + ",");
             }
             string aux = sb.ToString().Substring(0, sb.ToString().Length - 1);
@@ -135,6 +140,35 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
             }
 
             return list;
+        }
+
+        [HttpGet("getAllMaterials")]
+        public List<Tuple<string, decimal>> GetAllMaterials()
+        {
+            List<Tuple<string, decimal>> list = new List<Tuple<string, decimal>>();
+            List<string> lines = DBService.ReadTextFromFile(DBService.materialsFile);
+
+            string[] aux = null;
+            foreach(var i in lines)
+            {
+                aux = i.Split('=');
+                list.Add(new Tuple<string, decimal>(aux[0], Decimal.Parse(aux[1])));
+            }
+
+            return list;
+        }
+
+        [HttpGet("modifiyMatPrice/{material}/{newPrice}")]
+        public void ModifiyMatPrice(string material, decimal newPrice)
+        {
+            List<string> lines = DBService.ReadTextFromFile(DBService.materialsFile);
+
+            int index = DBService.GetIndexOfText(material, lines);
+            if (index == -1)
+                return;
+
+            lines[index] = material + "=" + newPrice;
+            DBService.ReWriteFile(DBService.materialsFile, lines);
         }
     }
 }

@@ -62,11 +62,18 @@ namespace MetalBandBakery.MVC.Controllers
         {
             var viewModel = new EditBakeViewModel();
 
-            IPriceService _restPriceService = new RestfullPriceService();
-            _restPriceService.ModifyPrice(ob.Sort[0], Decimal.Parse(ob.Price.ToString()));
+            //IPriceService _restPriceService = new RestfullPriceService();
+            //_restPriceService.ModifyPrice(ob.Sort[0], Decimal.Parse(ob.Price.ToString()));
 
-            IStockService _WCFstockService = new SoapStockService();
-            _WCFstockService.AddStockWithQuantity(ob.Sort[0], ob.Stock);
+            if (ob.Stock > 0)
+            {
+                IStockService _WCFstockService = new SoapStockService();
+                _WCFstockService.AddStockWithQuantity(ob.Sort[0], ob.Stock);
+            } else
+            {
+                IStockService _WCFstockService = new SoapStockService();
+                _WCFstockService.RemoveStock(ob.Sort[0], Math.Abs(ob.Stock));
+            }
 
             return Redirect("Bake/Bake");
         }

@@ -1,6 +1,6 @@
 harina=0,20
 mantequilla=0,25
-azucar=0,15
+azucar=0,20
 sal=0,15
 chocolate=0,45
 leche=0,40

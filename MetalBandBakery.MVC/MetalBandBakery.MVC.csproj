@@ -136,6 +136,8 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\BakeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,9 +145,12 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewsModels\EditProductViewModel.cs" />
     <Compile Include="ViewsModels\EditBakeViewModel.cs" />
+    <Compile Include="ViewsModels\GestMaterialViewModel.cs" />
     <Compile Include="ViewsModels\ListBakeViewModel.cs" />
     <Compile Include="ViewsModels\ListCartViewModel.cs" />
+    <Compile Include="ViewsModels\ListMaterialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\Inventory.WCF\Service.disco" />
@@ -218,9 +223,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Bake\Bake.cshtml" />
-    <Content Include="Views\Bake\Edit.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Cart\Resume.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Material\Material.cshtml" />
+    <Content Include="Views\Bake\Edit.cshtml" />
+    <Content Include="Views\Material\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

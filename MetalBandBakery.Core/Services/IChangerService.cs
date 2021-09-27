@@ -12,5 +12,7 @@ namespace MetalBandBakery.Core.Services
         bool RemoveMatOf(char product, string mat);
         bool AddMatOf(char product, string mat);
         List<Tuple<string, decimal>> GetListOfProduct(char product);
+        List<Tuple<string, decimal>> GetAllMaterials();
+        void ModifiyMatPrice(string material, decimal newPrice);
     }
 }
