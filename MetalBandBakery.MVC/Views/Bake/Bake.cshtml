@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Products list</h2>
+<h2>Products list stock of @Model.Warehouse</h2>
 <table class="table">
     <tr>
         <th>Sort</th>
@@ -23,7 +23,7 @@
         <td>@Convert.ToDecimal(i.Price).ToString()</td>
         <td>@i.Stock</td>
         <td><input type="button" value="Edit" onclick="location.href =
-        '@Url.Action("Edit", "Bake", new MetalBandBakery.MVC.Models.Bake { Sort = i.Sort, Name = i.Name, Materials = i.Materials, Stock = i.Stock })'" /></td>
+        '@Url.Action("Edit", "Bake", new MetalBandBakery.MVC.ViewsModels.EditBakeViewModel() {  Warehouse = Model.Warehouse, BakeSort = i.Sort[0]})'" /></td>
     </tr>
     }
 </table>

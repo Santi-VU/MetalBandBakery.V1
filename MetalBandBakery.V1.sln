@@ -101,7 +101,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MetalBandBakery.NamesServic
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.CartService.API", "MetalBandBakery.CartService.API\MetalBandBakery.CartService.API.csproj", "{602B8D42-C768-4C47-9484-340664D79E59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetalBandBakery.CartService.API", "MetalBandBakery.CartService.API\MetalBandBakery.CartService.API.csproj", "{602B8D42-C768-4C47-9484-340664D79E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalBandBakery.WareHouseservice.API", "MetalBandBakery.WareHouseservice.API\MetalBandBakery.WareHouseservice.API.csproj", "{8826AEB8-A6EB-44F3-95F9-77D9B5E85603}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,10 @@ Global
 		{602B8D42-C768-4C47-9484-340664D79E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{602B8D42-C768-4C47-9484-340664D79E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{602B8D42-C768-4C47-9484-340664D79E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8826AEB8-A6EB-44F3-95F9-77D9B5E85603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8826AEB8-A6EB-44F3-95F9-77D9B5E85603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8826AEB8-A6EB-44F3-95F9-77D9B5E85603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8826AEB8-A6EB-44F3-95F9-77D9B5E85603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

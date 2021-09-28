@@ -11,7 +11,6 @@
         <th>Sort</th>
         <th>Name</th>
         <th>Price</th>
-        <th>Stock</th>
         <th></th>
     </tr>
     
@@ -21,7 +20,6 @@
         <td>@i.Sort</td>
         <td>@i.Name</td>
         <td>@Convert.ToDecimal(i.Price).ToString()</td>
-        <td>@i.Stock</td>
         <td><input type="button" value="Edit" onclick="location.href =
         '@Url.Action("Edit", "Product", new MetalBandBakery.MVC.Models.Bake { Sort = i.Sort, Name = i.Name, Materials = i.Materials, Stock = i.Stock })'" /></td>
     </tr>

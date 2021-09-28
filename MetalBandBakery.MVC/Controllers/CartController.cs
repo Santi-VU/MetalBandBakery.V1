@@ -21,7 +21,7 @@ namespace MetalBandBakery.MVC.Controllers
         {
             return View();
         }
-
+        /*
         public ActionResult Cart()
         {
             SoapStockService wcfStockService = new SoapStockService();
@@ -56,39 +56,81 @@ namespace MetalBandBakery.MVC.Controllers
 
             return View(viewModel);
         }
+        */
+        public ActionResult Cart(Warehouse wareHouse)
+        {
+            SoapStockService wcfStockService = new SoapStockService();
+            List<int> stocks = wcfStockService.GetStocks();
+
+            SoapNameProductService wcfNameService = new SoapNameProductService();
+            List<string> names = wcfNameService.GetAllProducts();
+            List<char> sorts = wcfNameService.GetAllProductSorts();
+
+            RestFullChangerService restChangerService = new RestFullChangerService();
+
+            var viewModel = new ListCartViewModel();
+            viewModel.products = new List<Bake>();
+
+            foreach (var i in wcfStockService.ManyStockOfWarehouse(wareHouse.Name))
+            {
+                Bake b = new Bake();
+                b.Sort = i.Item1.ToString();
+                b.Stock = i.Item2;
+                b.Name = wcfNameService.GetProductName(b.Sort[0]);
+
+                List<Material> materials = new List<Material>();
+                foreach (var j in restChangerService.GetListOfProduct(b.Sort[0]))
+                {
+                    materials.Add(new Material() { Name = j.Item1, Price = j.Item2 });
+                }
+                b.Materials = materials;
+                viewModel.products.Add(b);
+            }
+
+            RestFullCartService restCartService = new RestFullCartService();
+            Cart c = new Cart();
+            c.productList = restCartService.Get();
+            c.totalPayed = restCartService.GetCurrentPayed();
+            viewModel.cart = c;
+            viewModel.Warehouse = wareHouse.Name;
+
+            return View(viewModel);
+        }
 
         public ActionResult Pay(ListCartViewModel listCartModel)
         {
             RestFullCartService restCartService = new RestFullCartService();
             restCartService.Pay(listCartModel.cart.totalPayed);
-            return Redirect("Cart/Cart");
+
+            Warehouse warehouse = new Warehouse() { Name = listCartModel.Warehouse };
+            return RedirectToAction("Cart", warehouse);
         }
 
-        public ActionResult Add(Bake bake)
+        public ActionResult Add(GestCartViewModel model)
         {
             SoapStockService wcfStockService = new SoapStockService(); 
-            if (wcfStockService.CanBeRemoved(bake.Sort[0], 1))
+            if (wcfStockService.CanBenRemovedMaster(model.Warehouse, model.SortProduct, model.Quantity))
             {
-                wcfStockService.RemoveStockUnit(bake.Sort[0]);
+                wcfStockService.RemoveStockMaster(model.Warehouse, model.SortProduct, 1);
                 RestFullCartService restCartService = new RestFullCartService();
-                restCartService.AddProduct(bake.Sort[0]);
+                restCartService.AddProduct(model.SortProduct);
             }
 
-            return Redirect("Cart/Cart");
+            return RedirectToAction("Cart", new Warehouse() { Name = model.Warehouse });
         }
 
-        public ActionResult Del(Bake bake)
+        public ActionResult Del(GestCartViewModel model)
         {
             RestFullCartService restCartService = new RestFullCartService();
-            int unitsInCart = restCartService.GetUnitsOfProduct(bake.Sort[0]);
+            int unitsInCart = restCartService.GetUnitsOfProduct(model.SortProduct);
             if (unitsInCart > 0)
             {
-                restCartService.RemoveProduct(bake.Sort[0]);
+                restCartService.RemoveProduct(model.SortProduct);
                 SoapStockService wcfStockService = new SoapStockService();
-                wcfStockService.AddStockUnit(bake.Sort[0]);
+                wcfStockService.AddStockMaster(model.Warehouse, model.SortProduct, 1);
             }
 
-            return Redirect("Cart/Cart");
+            return RedirectToAction("Cart", new Warehouse() { Name = model.Warehouse });
         }
 
         public ActionResult Resume(Cart cart)
@@ -102,7 +144,49 @@ namespace MetalBandBakery.MVC.Controllers
         {
             RestFullCartService restCartService = new RestFullCartService();
             restCartService.RestartCart();
-            return Redirect("Cart/Cart");
+            return Redirect("https://localhost:44337/");
+        }
+
+        public ActionResult Stock()
+        {
+            RestFullWarehouseService restWarehouseService = new RestFullWarehouseService();
+            List<Tuple<int, string>> namesWarehouses = restWarehouseService.Get();
+
+            SoapStockService soapStockService = new SoapStockService();
+            RestFullChangerService changerService = new RestFullChangerService();
+            SoapNameProductService soapNameProductService = new SoapNameProductService();
+
+            List<Warehouse> warehouses = new List<Warehouse>();
+            List<Bake> stockBakes = new List<Bake>();
+            List<Material> materialBake = null;
+            foreach (var i in namesWarehouses)
+            {
+                Warehouse warehouse = new Warehouse() { Id = i.Item1, Name = i.Item2 };
+
+                foreach (var j in soapStockService.ManyStockOfWarehouse(i.Item2))
+                {
+
+                    Bake b = new Bake();
+                    b.Sort = j.Item1.ToString();
+                    b.Stock = j.Item2;
+                    b.Name = soapNameProductService.GetProductName(b.Sort[0]);
+
+                    materialBake = new List<Material>();
+                    foreach (var y in changerService.GetListOfProduct(b.Sort[0]))
+                    {
+                        materialBake.Add(new Material { Name = y.Item1, Price = y.Item2 });
+                    }
+                    b.Materials = materialBake;
+
+                }
+                warehouse.Stock = stockBakes;
+                warehouses.Add(warehouse);
+            }
+
+            var viewModel = new ViewsModels.ListWarehouseViewModel();
+            viewModel.Warehouses = warehouses;
+
+            return View(viewModel);
         }
     }
 }

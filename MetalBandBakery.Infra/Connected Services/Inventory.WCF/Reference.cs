@@ -68,6 +68,36 @@ namespace MetalBandBakery.Infra.Inventory.WCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockUnit", ReplyAction="http://tempuri.org/IService/AddStockUnitResponse")]
         System.Threading.Tasks.Task AddStockUnitAsync(char product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ManyStockOfWarehouse", ReplyAction="http://tempuri.org/IService/ManyStockOfWarehouseResponse")]
+        System.Tuple<char, int>[] ManyStockOfWarehouse(string warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ManyStockOfWarehouse", ReplyAction="http://tempuri.org/IService/ManyStockOfWarehouseResponse")]
+        System.Threading.Tasks.Task<System.Tuple<char, int>[]> ManyStockOfWarehouseAsync(string warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CanBenRemovedMaster", ReplyAction="http://tempuri.org/IService/CanBenRemovedMasterResponse")]
+        bool CanBenRemovedMaster(string warehouse, char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CanBenRemovedMaster", ReplyAction="http://tempuri.org/IService/CanBenRemovedMasterResponse")]
+        System.Threading.Tasks.Task<bool> CanBenRemovedMasterAsync(string warehouse, char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveStockMaster", ReplyAction="http://tempuri.org/IService/RemoveStockMasterResponse")]
+        bool RemoveStockMaster(string warehouse, char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemoveStockMaster", ReplyAction="http://tempuri.org/IService/RemoveStockMasterResponse")]
+        System.Threading.Tasks.Task<bool> RemoveStockMasterAsync(string warehouse, char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockMaster", ReplyAction="http://tempuri.org/IService/AddStockMasterResponse")]
+        bool AddStockMaster(string warehouse, char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddStockMaster", ReplyAction="http://tempuri.org/IService/AddStockMasterResponse")]
+        System.Threading.Tasks.Task<bool> AddStockMasterAsync(string warehouse, char product, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ManyStockOfWarehouseProduct", ReplyAction="http://tempuri.org/IService/ManyStockOfWarehouseProductResponse")]
+        int ManyStockOfWarehouseProduct(string warehouse, char product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ManyStockOfWarehouseProduct", ReplyAction="http://tempuri.org/IService/ManyStockOfWarehouseProductResponse")]
+        System.Threading.Tasks.Task<int> ManyStockOfWarehouseProductAsync(string warehouse, char product);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -167,6 +197,46 @@ namespace MetalBandBakery.Infra.Inventory.WCF {
         
         public System.Threading.Tasks.Task AddStockUnitAsync(char product) {
             return base.Channel.AddStockUnitAsync(product);
+        }
+        
+        public System.Tuple<char, int>[] ManyStockOfWarehouse(string warehouse) {
+            return base.Channel.ManyStockOfWarehouse(warehouse);
+        }
+        
+        public System.Threading.Tasks.Task<System.Tuple<char, int>[]> ManyStockOfWarehouseAsync(string warehouse) {
+            return base.Channel.ManyStockOfWarehouseAsync(warehouse);
+        }
+        
+        public bool CanBenRemovedMaster(string warehouse, char product, int quantity) {
+            return base.Channel.CanBenRemovedMaster(warehouse, product, quantity);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CanBenRemovedMasterAsync(string warehouse, char product, int quantity) {
+            return base.Channel.CanBenRemovedMasterAsync(warehouse, product, quantity);
+        }
+        
+        public bool RemoveStockMaster(string warehouse, char product, int quantity) {
+            return base.Channel.RemoveStockMaster(warehouse, product, quantity);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveStockMasterAsync(string warehouse, char product, int quantity) {
+            return base.Channel.RemoveStockMasterAsync(warehouse, product, quantity);
+        }
+        
+        public bool AddStockMaster(string warehouse, char product, int quantity) {
+            return base.Channel.AddStockMaster(warehouse, product, quantity);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddStockMasterAsync(string warehouse, char product, int quantity) {
+            return base.Channel.AddStockMasterAsync(warehouse, product, quantity);
+        }
+        
+        public int ManyStockOfWarehouseProduct(string warehouse, char product) {
+            return base.Channel.ManyStockOfWarehouseProduct(warehouse, product);
+        }
+        
+        public System.Threading.Tasks.Task<int> ManyStockOfWarehouseProductAsync(string warehouse, char product) {
+            return base.Channel.ManyStockOfWarehouseProductAsync(warehouse, product);
         }
     }
 }

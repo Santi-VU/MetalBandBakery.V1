@@ -37,4 +37,19 @@ public interface IService
 
 	[OperationContract]
 	void AddStockUnit(char product);
+
+	[OperationContract]
+	List<Tuple<char, int>> ManyStockOfWarehouse(string warehouse);
+
+	[OperationContract]
+	bool CanBenRemovedMaster(string warehouse, char product, int quantity);
+
+	[OperationContract]
+	bool RemoveStockMaster(string warehouse, char product, int quantity);
+
+	[OperationContract]
+	bool AddStockMaster(string warehouse, char product, int quantity);
+
+	[OperationContract]
+	int ManyStockOfWarehouseProduct(string warehouse, char product);
 }

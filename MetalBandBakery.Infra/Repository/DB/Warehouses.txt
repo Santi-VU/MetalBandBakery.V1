@@ -1,0 +1,6 @@
+0=huesca
+1=zaragoza
+2=madrid
+3=barcelona
+4=sevilla
+5=almeria

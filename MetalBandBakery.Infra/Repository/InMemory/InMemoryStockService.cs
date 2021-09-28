@@ -22,12 +22,22 @@ namespace MetalBandBakery.Infra.Repository.InMemory
             throw new NotImplementedException();
         }
 
+        public bool AddStockMaster(string warehouse, char product, int quantity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddStockUnit(char product)
         {
             throw new NotImplementedException();
         }
 
         public bool AddStockWithQuantity(char product, int quantity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CanBenRemovedMaster(string warehouse, char product, int quantity)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +62,22 @@ namespace MetalBandBakery.Infra.Repository.InMemory
             throw new NotImplementedException();
         }
 
+        public List<Tuple<char, int>> ManyStockOfWarehouse(string warehouse)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ManyStockOfWarehouseProduct(string warehouse, char product)
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveStock(char product, int amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveStockMaster(string warehouse, char product, int quantity)
         {
             throw new NotImplementedException();
         }

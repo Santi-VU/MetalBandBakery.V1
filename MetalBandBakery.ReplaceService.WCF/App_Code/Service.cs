@@ -15,7 +15,7 @@ public class Service : IService
     }
     public bool NeedToBeReplace(char product)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
+        if (!DBService.ExistsIdInFile(product, DBService.stocksFile))
             return false;
 
         SoapStockService _wcfStock =  new SoapStockService();
@@ -26,7 +26,7 @@ public class Service : IService
 
     public void ReplaceProduct(char product)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.stocksFile))
+        if (!DBService.ExistsIdInFile(product, DBService.stocksFile))
             return;
 
         SoapStockService _wcfStock = new SoapStockService();

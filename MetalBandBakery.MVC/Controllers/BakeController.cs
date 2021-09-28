@@ -22,60 +22,126 @@ namespace MetalBandBakery.MVC.Controllers
             return View();
         }
 
-        public ActionResult Bake()
+        public ActionResult Bake(Warehouse warehouse)
         {
             SoapStockService wcfStockService = new SoapStockService();
-            List<int> stocks = wcfStockService.GetStocks();
-
             SoapNameProductService wcfNameService = new SoapNameProductService();
-            List<string> names = wcfNameService.GetAllProducts();
-            List<char> sorts = wcfNameService.GetAllProductSorts();
-
             RestFullChangerService restChangerService = new RestFullChangerService();
+            RestfullPriceService restPriceService = new RestfullPriceService();
 
-            var viewModel = new ListBakeViewModel();
-            viewModel.bakes = new List<Bake>();
-            for (int i = 0; i < names.Count; i++)
+            List<Bake> bakes = new List<Bake>();
+            foreach (var i in wcfStockService.ManyStockOfWarehouse(warehouse.Name))
             {
+                Bake b = new Bake();
+                b.Sort = i.Item1.ToString();
+                b.Stock = i.Item2;
+                b.Name = wcfNameService.GetProductName(b.Sort[0]);
+
                 List<Material> materials = new List<Material>();
-                foreach (var j in restChangerService.GetListOfProduct(sorts[i]))
+                foreach (var j in restChangerService.GetListOfProduct(b.Sort[0]))
                 {
                     materials.Add(new Material() { Name = j.Item1, Price = j.Item2 });
                 }
 
-                viewModel.bakes.Add(new Models.Bake { Sort = sorts[i].ToString(), Name = names[i], Stock = stocks[i], Materials = materials});
+                b.Materials = materials;
+                bakes.Add(b);
             }
+
+            var viewModel = new ListBakeViewModel();
+            viewModel.bakes = bakes;
+            viewModel.Warehouse = warehouse.Name;
 
             return View(viewModel);
         }
 
-        public ActionResult Edit(Bake bake)
+        public ActionResult Edit(EditBakeViewModel editedModel)
         {
-            var viewModel = new EditBakeViewModel();
+            SoapStockService soapStockService = new SoapStockService();
+            RestFullChangerService changerService = new RestFullChangerService();
+            SoapNameProductService soapNameProductService = new SoapNameProductService();
+            RestFullWarehouseService restWarehouseService = new RestFullWarehouseService();
 
-            viewModel.Product = bake;
+            Bake b = new Bake();
+            b.Sort = editedModel.BakeSort.ToString();
+            b.Name = soapNameProductService.GetProductName(b.Sort[0]);
+            b.Stock = soapStockService.ManyStockOfWarehouseProduct(editedModel.Warehouse ,b.Sort[0]);
 
-            return View(bake);
-        }
-
-        public ActionResult BakeEdited(Bake ob)
-        {
-            var viewModel = new EditBakeViewModel();
-
-            //IPriceService _restPriceService = new RestfullPriceService();
-            //_restPriceService.ModifyPrice(ob.Sort[0], Decimal.Parse(ob.Price.ToString()));
-
-            if (ob.Stock > 0)
+            List<Material> materials = new List<Material>();
+            foreach (var i in changerService.GetListOfProduct(b.Sort[0]))
             {
-                IStockService _WCFstockService = new SoapStockService();
-                _WCFstockService.AddStockWithQuantity(ob.Sort[0], ob.Stock);
-            } else
-            {
-                IStockService _WCFstockService = new SoapStockService();
-                _WCFstockService.RemoveStock(ob.Sort[0], Math.Abs(ob.Stock));
+                materials.Add(new Material() { Name = i.Item1, Price = i.Item2 });
             }
 
-            return Redirect("Bake/Bake");
+            b.Materials = materials;
+
+            var viewModel = new EditedBakeViewModel();
+            viewModel.Warehouse = editedModel.Warehouse;
+            viewModel.bake = b;
+
+            return View(viewModel);
+        }
+
+        public ActionResult BakeEdited(EditedBakeViewModel editedModel)
+        {
+            SoapStockService soapStockService = new SoapStockService();
+            RestFullChangerService changerService = new RestFullChangerService();
+            SoapNameProductService soapNameProductService = new SoapNameProductService();
+            RestFullWarehouseService restWarehouseService = new RestFullWarehouseService();
+
+            if (editedModel.bake.Stock == 0)
+                return null;
+
+            if (editedModel.bake.Stock > 0)
+            {
+                soapStockService.AddStockMaster(editedModel.Warehouse, editedModel.bake.Sort[0], editedModel.bake.Stock);
+            } else
+            {
+                soapStockService.RemoveStockMaster(editedModel.Warehouse, editedModel.bake.Sort[0], editedModel.bake.Stock);
+            }
+
+            return Redirect("https://localhost:44337/");
+        }
+
+        public ActionResult Stock()
+        {
+            RestFullWarehouseService restWarehouseService = new RestFullWarehouseService();
+            List<Tuple<int, string>> namesWarehouses = restWarehouseService.Get();
+
+            SoapStockService soapStockService = new SoapStockService();
+            RestFullChangerService changerService = new RestFullChangerService();
+            SoapNameProductService soapNameProductService = new SoapNameProductService();
+
+            List<Warehouse> warehouses = new List<Warehouse>();
+            List<Bake> stockBakes = new List<Bake>();
+            List<Material> materialBake = null;
+            foreach (var i in namesWarehouses)
+            {
+                Warehouse warehouse = new Warehouse() { Id = i.Item1, Name = i.Item2 };
+
+                foreach (var j in soapStockService.ManyStockOfWarehouse(i.Item2))
+                {
+
+                    Bake b = new Bake();
+                    b.Sort = j.Item1.ToString();
+                    b.Stock = j.Item2;
+                    b.Name = soapNameProductService.GetProductName(b.Sort[0]);
+
+                    materialBake = new List<Material>();
+                    foreach (var y in changerService.GetListOfProduct(b.Sort[0]))
+                    {
+                        materialBake.Add(new Material { Name = y.Item1, Price = y.Item2 });
+                    }
+                    b.Materials = materialBake;
+
+                }
+                warehouse.Stock = stockBakes;
+                warehouses.Add(warehouse);
+            }
+
+            var viewModel = new ViewsModels.ListWarehouseViewModel();
+            viewModel.Warehouses = warehouses;
+
+            return View(viewModel);
         }
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="Services\IPriceService.cs" />
     <Compile Include="Services\IReplaceStockService.cs" />
     <Compile Include="Services\IStockService.cs" />
+    <Compile Include="Services\IWarehouseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

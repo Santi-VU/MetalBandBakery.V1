@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:55243/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:55243/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:55243/Service.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:55243/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_CheckStock_InputMessage">
@@ -61,6 +62,36 @@
   <wsdl:message name="IService_AddStockUnit_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddStockUnitResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_ManyStockOfWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:ManyStockOfWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ManyStockOfWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ManyStockOfWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CanBenRemovedMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:CanBenRemovedMaster" />
+  </wsdl:message>
+  <wsdl:message name="IService_CanBenRemovedMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CanBenRemovedMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemoveStockMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveStockMaster" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemoveStockMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveStockMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddStockMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddStockMaster" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddStockMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddStockMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ManyStockOfWarehouseProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:ManyStockOfWarehouseProduct" />
+  </wsdl:message>
+  <wsdl:message name="IService_ManyStockOfWarehouseProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ManyStockOfWarehouseProductResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="CheckStock">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/CheckStock" message="tns:IService_CheckStock_InputMessage" />
@@ -97,6 +128,26 @@
     <wsdl:operation name="AddStockUnit">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/AddStockUnit" message="tns:IService_AddStockUnit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/AddStockUnitResponse" message="tns:IService_AddStockUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ManyStockOfWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ManyStockOfWarehouse" message="tns:IService_ManyStockOfWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ManyStockOfWarehouseResponse" message="tns:IService_ManyStockOfWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CanBenRemovedMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CanBenRemovedMaster" message="tns:IService_CanBenRemovedMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CanBenRemovedMasterResponse" message="tns:IService_CanBenRemovedMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveStockMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RemoveStockMaster" message="tns:IService_RemoveStockMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RemoveStockMasterResponse" message="tns:IService_RemoveStockMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddStockMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddStockMaster" message="tns:IService_AddStockMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddStockMasterResponse" message="tns:IService_AddStockMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ManyStockOfWarehouseProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ManyStockOfWarehouseProduct" message="tns:IService_ManyStockOfWarehouseProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ManyStockOfWarehouseProductResponse" message="tns:IService_ManyStockOfWarehouseProduct_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
@@ -175,6 +226,51 @@
     </wsdl:operation>
     <wsdl:operation name="AddStockUnit">
       <soap:operation soapAction="http://tempuri.org/IService/AddStockUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ManyStockOfWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IService/ManyStockOfWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CanBenRemovedMaster">
+      <soap:operation soapAction="http://tempuri.org/IService/CanBenRemovedMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveStockMaster">
+      <soap:operation soapAction="http://tempuri.org/IService/RemoveStockMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddStockMaster">
+      <soap:operation soapAction="http://tempuri.org/IService/AddStockMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ManyStockOfWarehouseProduct">
+      <soap:operation soapAction="http://tempuri.org/IService/ManyStockOfWarehouseProduct" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

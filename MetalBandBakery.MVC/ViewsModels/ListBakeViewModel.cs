@@ -8,6 +8,7 @@ namespace MetalBandBakery.MVC.ViewsModels
 {
     public class ListBakeViewModel
     {
+        public string Warehouse { get; set; }
         public List<Bake> bakes { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
         [HttpGet("getMatsPriceOf/{product}")]
         public decimal GetMatsPriceOf(char product)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+            if (!DBService.ExistsIdInFile(product, DBService.productMatsFile))
                 return -1;
             List<string> productMats = DBService.ReadTextFromFile(DBService.productMatsFile);
             int index = DBService.GetIndexOfText(product, productMats);
@@ -66,7 +66,7 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
         [HttpGet("removeMatOf/{product}/{mat}")]
         public bool RemoveMatOf(char product, string mat)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+            if (!DBService.ExistsIdInFile(product, DBService.productMatsFile))
                 return false;
             List<string> productsMats = DBService.ReadTextFromFile(DBService.productMatsFile);
             int index = DBService.GetIndexOfText(product, productsMats);
@@ -97,7 +97,7 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
         [HttpGet("addMatOf/{product}/{mat}")]
         public bool AddMatOf(char product, string mat)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+            if (!DBService.ExistsIdInFile(product, DBService.productMatsFile))
                 return false;
             List<string> productsMats = DBService.ReadTextFromFile(DBService.productMatsFile);
 
@@ -116,7 +116,7 @@ namespace MetalBandBakery.ChangerService.Api.Controllers
         [HttpGet("getListOfProduct/{product}")]
         public List<Tuple<string, decimal>> GetListOfProduct(char product)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.productMatsFile))
+            if (!DBService.ExistsIdInFile(product, DBService.productMatsFile))
                 return null;
 
             List<string> productsMats = DBService.ReadTextFromFile(DBService.productMatsFile);

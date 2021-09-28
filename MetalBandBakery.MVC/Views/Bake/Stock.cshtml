@@ -1,0 +1,29 @@
+﻿@model MetalBandBakery.MVC.ViewsModels.ListWarehouseViewModel
+
+@{
+    ViewBag.Title = "Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string aux = "";
+}
+
+<h2>Replace Stock of Warehouse</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+
+    @foreach (var i in Model.Warehouses)
+    {
+        {
+            aux = i.Name;
+        }
+        <tr>
+            <td>@i.Name</td>
+            <td>
+                <input type="button" value="View" onclick="location.href =
+        '@Url.Action("Bake", "Bake", new MetalBandBakery.MVC.Models.Warehouse() { Name = i.Name })'" />
+            </td>
+        </tr>
+    }
+</table>

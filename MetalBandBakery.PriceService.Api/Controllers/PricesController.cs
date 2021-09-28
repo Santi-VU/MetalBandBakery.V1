@@ -37,7 +37,7 @@ namespace MetalBandBakery.PriceService.Api.Controllers
         [HttpGet("getPrice/{product}")]
         public decimal GetPrice(char product)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.pricesFile))
+            if (!DBService.ExistsIdInFile(product, DBService.pricesFile))
                 return -1;
 
             List<string> lines = DBService.ReadTextFromFile(DBService.pricesFile);
@@ -55,7 +55,7 @@ namespace MetalBandBakery.PriceService.Api.Controllers
         [HttpGet("setPrice/{product}/{newPrice}")]
         public bool GetNewPrice(char product, decimal newPrice)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.pricesFile))
+            if (!DBService.ExistsIdInFile(product, DBService.pricesFile))
                 return false;
 
             if (newPrice <= 0)

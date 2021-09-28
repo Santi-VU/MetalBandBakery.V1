@@ -40,7 +40,7 @@ namespace MetalBandBakery.CartService.API.Controllers
         [HttpGet("addProduct/{product}")]
         public bool AddProduct(char product)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.namesFile))
+            if (!DBService.ExistsIdInFile(product, DBService.namesFile))
                 return false;
 
             List<string> lines = DBService.ReadTextFromFile(DBService.cartFile);
@@ -65,7 +65,7 @@ namespace MetalBandBakery.CartService.API.Controllers
         [HttpGet("removeProduct/{product}")]
         public bool RemoveProduct(char product)
         {
-            if (!DBService.ExistsProductInFile(product, DBService.namesFile))
+            if (!DBService.ExistsIdInFile(product, DBService.namesFile))
                 return false;
 
             List<string> lines = DBService.ReadTextFromFile(DBService.cartFile);
@@ -125,7 +125,7 @@ namespace MetalBandBakery.CartService.API.Controllers
         {
             List<string> lines = DBService.ReadTextFromFile(DBService.cartFile);
 
-            if (!DBService.ExistsProductInFile(product, DBService.cartFile))
+            if (!DBService.ExistsIdInFile(product, DBService.cartFile))
                 return -1;
 
             int index = DBService.GetIndexOfText(product, lines);

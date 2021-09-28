@@ -12,7 +12,7 @@ public class Service : IService
 {
     public string GetProductName(char product)
     {
-        if (!DBService.ExistsProductInFile(product, DBService.namesFile))
+        if (!DBService.ExistsIdInFile(product, DBService.namesFile))
             return "";
 
         List<string> lines = DBService.ReadTextFromFile(DBService.namesFile);
@@ -33,7 +33,7 @@ public class Service : IService
 
     public char GetProductSort(string product)
     {
-        if (!DBService.ExistsProductInFile(product[0], DBService.namesFile))
+        if (!DBService.ExistsIdInFile(product[0], DBService.namesFile))
             return ' ';
 
         List<string> lines = DBService.ReadTextFromFile(DBService.namesFile);

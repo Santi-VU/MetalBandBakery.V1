@@ -67,5 +67,41 @@ namespace MetalBandBakery.Infra.Repository.HTTP
             Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
             wcfService.AddStockUnit(product);
         }
+
+        public List<Tuple<char, int>> ManyStockOfWarehouse(string warehouse)
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            List<Tuple<char, int>> list = new List<Tuple<char, int>>();
+            foreach (var i in wcfService.ManyStockOfWarehouse(warehouse))
+            {
+                list.Add(i);
+            }
+
+            return list;
+        }
+
+        public bool CanBenRemovedMaster(string warehouse, char product, int quantity)
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            return wcfService.CanBenRemovedMaster(warehouse, product, quantity);
+        }
+
+        public bool RemoveStockMaster(string warehouse, char product, int quantity)
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            return wcfService.RemoveStockMaster(warehouse, product, quantity);
+        }
+
+        public bool AddStockMaster(string warehouse, char product, int quantity)
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            return wcfService.AddStockMaster(warehouse, product, quantity);
+        }
+
+        public int ManyStockOfWarehouseProduct(string warehouse, char product)
+        {
+            Inventory.WCF.IService wcfService = new Inventory.WCF.ServiceClient();
+            return wcfService.ManyStockOfWarehouseProduct(warehouse, product);
+        }
     }
 }

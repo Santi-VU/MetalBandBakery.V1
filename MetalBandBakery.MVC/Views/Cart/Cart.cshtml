@@ -25,13 +25,15 @@
             <td>@i.Stock</td>
             <td>
                 <input type="button" value="Add" onclick="location.href =
-                '@Url.Action("Add", "Cart", new MetalBandBakery.MVC.Models.Bake
-                            { Sort = i.Sort, Name = i.Name, Stock = i.Stock })'" />
+                '@Url.Action("Add", "Cart", new MetalBandBakery.MVC.ViewsModels.GestCartViewModel() {
+                Warehouse = Model.Warehouse, SortProduct = i.Sort[0], Quantity = i.Stock
+            })'" />
             </td>
             <td>
                 <input type="button" value="Del" onclick="location.href =
-                '@Url.Action("Del", "Cart", new MetalBandBakery.MVC.Models.Bake
-                            { Sort = i.Sort, Name = i.Name, Stock = i.Stock })'" />
+                '@Url.Action("Del", "Cart", new MetalBandBakery.MVC.ViewsModels.GestCartViewModel() {
+                Warehouse = Model.Warehouse, SortProduct = i.Sort[0], Quantity = i.Stock
+            })'" />
             </td>
         </tr>
     }
@@ -65,6 +67,8 @@
     using (Html.BeginForm("Pay", "Cart", FormMethod.Post))
     {
         {
+            @Html.TextBoxFor(model => model.Warehouse, new { @readonly = "readonly", style = "display: none;" })
+            <br />
             @Html.TextBoxFor(model => model.cart.totalPayed);
             <br />
             <input type="submit" value="Pay" />

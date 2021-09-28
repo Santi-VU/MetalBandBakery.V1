@@ -6,10 +6,9 @@ using System.Web;
 
 namespace MetalBandBakery.MVC.ViewsModels
 {
-    public class ListCartViewModel
+    public class EditedBakeViewModel
     {
         public string Warehouse { get; set; }
-        public List<Bake> products { get; set; }
-        public Cart cart { get; set; }
+        public Bake bake { get; set; }
     }
 }
